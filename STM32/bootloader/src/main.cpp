@@ -1,5 +1,5 @@
 /* Bootloader with firmware update capability on dual-bank flash memory swap
- * APPLICATION FILE
+ * BOOTLOADER FILE
  * @file main.cpp
  * @brief STM32F469 Custom Bare-Metal C++ Bootloader
  */
@@ -51,10 +51,14 @@ struct FlashSectorMap {
 };
 
 // Packet constants
-constexpr uint8_t PACKET_START_BYTE = 0x02;
-constexpr uint8_t ACK_BYTE          = 0x06;
-constexpr uint8_t NAK_BYTE          = 0x15;
-constexpr uint8_t ERR_BYTE          = 0xEE;
+constexpr uint8_t PACKET_START_BYTE 	= 0x02;
+constexpr uint8_t ACK_BYTE         		= 0x06;
+constexpr uint8_t NAK_GENERIC           = 0x15; // Kept as general fallback
+constexpr uint8_t NAK_CRC_ERROR         = 0x16; // Per-packet or final CRC failure
+constexpr uint8_t NAK_VERSION_MISMATCH  = 0x17; // Firmware version rejected
+constexpr uint8_t NAK_MAGIC_MISSING     = 0x18; // Metadata anchor verification failed
+constexpr uint8_t ERR_FLASH_ERASE       = 0xE1; // Flash erase routine hardware fault
+constexpr uint8_t ERR_FLASH_WRITE       = 0xE2; // Flash program routine hardware fault
 
 // Explicit constants for our boot tracking state machine
 constexpr uint8_t STATE_RUN_BANK1      = 1;
@@ -257,7 +261,7 @@ static void format_sector13_fresh(uint8_t initial_state) {
 	if (!flash_erase_sector(13)) {
 		// HARDWARE ERASE FAULT: Stop everything!
 		flash_lock();
-		uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 500);
+		uart6.UART_Transmit(std::span<const uint8_t>(&ERR_FLASH_ERASE, 1), 500);
 		return; // Break out of execution early to prevent programming un-erased memory
 	}
 	flash_write(SECTOR13_START, initial_state);  // Write the starting bank choice at the very first byte
@@ -307,7 +311,7 @@ static bool program_packet_to_flash(uint32_t start_address, std::span<const uint
         // Directly sample the physical Flash memory address
         uint32_t written_word = *reinterpret_cast<volatile uint32_t*>(target_address);
         if (written_word != word) {
-        	uart6.UART_Transmit(std::span<const uint8_t>(&ERR_BYTE, 1), 500);
+        	uart6.UART_Transmit(std::span<const uint8_t>(&ERR_FLASH_WRITE, 1), 500);
         	return false; // Flash verification mismatch! Silicon/Data corruption detected.
         }
         // Advance physical flash pointer forward by exactly 1 word (4 bytes)
@@ -326,7 +330,7 @@ void execute_flash_and_respond() {
     uint32_t computed_crc = CRC32_compute(payload_buffer, header.payload_length);
 
     if (computed_crc != incoming_crc) {
-    	uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 500);
+    	uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 500); // The ESP32 will retry sending the packet
         return;
     }
 
@@ -411,7 +415,7 @@ void execute_flash_and_respond() {
     		if (!flash_erase_sector(target_sector)) {
     			// HARDWARE ERASE FAULT: Stop everything!
     			flash_lock();
-    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 500);
+    			uart6.UART_Transmit(std::span<const uint8_t>(&ERR_FLASH_ERASE, 1), 500);
     			return; // Break out of execution early to prevent programming un-erased memory
     		}
     		last_erased_sector = static_cast<int16_t>(target_sector);
@@ -437,8 +441,9 @@ void execute_flash_and_respond() {
     			uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(err_buf), strlen(err_buf)}, 500);
     			flash_lock(); // Abort and signal failure
     			tot_fw_bytes_written = 0;
-    			transfer_in_progress = false;
-    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 500);
+    			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
+    			transfer_in_progress = true; // Forces the watchdog to stay active and reboots after 4sec if the download doesn't restar
+    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_MAGIC_MISSING, 1), 500);
     			return;
     		}
     		uint16_t expected_major = header.version_major; // major version from the json manifest
@@ -454,8 +459,9 @@ void execute_flash_and_respond() {
     			uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(mismatch_msg.data()), mismatch_msg.size()}, 500);
     			flash_lock(); // Abort and signal failure
     			tot_fw_bytes_written = 0;
-    			transfer_in_progress = false;
-    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 500);
+    			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
+    			transfer_in_progress = true; // Forces the watchdog to stay active and reboots after 4sec if the download doesn't restart
+    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_VERSION_MISMATCH, 1), 500);
     			return;
     		}
     		// Compute CRC over the entire physical flashed binary space
@@ -467,7 +473,7 @@ void execute_flash_and_respond() {
     			record_new_bank_state(bank_choice); // update the new bank number the app will run onto
     			flash_lock();
     			tot_fw_bytes_written = 0; // Reset counter for the next future update session
-    			transfer_in_progress = 0;
+    			transfer_in_progress = false;
     			uart6.UART_Transmit(std::span<const uint8_t>(&ACK_BYTE, 1), 500);
     			constexpr std::string_view msg = "New application fw flashed successfully, STM32 will reboot now."; // Debug purposes
     			uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
@@ -481,9 +487,10 @@ void execute_flash_and_respond() {
     			// Do NOT write the new bank state to Sector 13.
     			flash_lock();
     			tot_fw_bytes_written = 0;
-    			transfer_in_progress = false;
+    			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
+    			transfer_in_progress = true; // Forces the watchdog to stay active and reboots after 4sec if the download doesn't restar
     			// Blast back a NAK or an explicit ERR_BYTE so Python flags a flashing failure
-    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 2);
+    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 2);
     			return;
     		}
     	} else {
@@ -494,7 +501,7 @@ void execute_flash_and_respond() {
     	}
     } else {
     	// Hardware fault during programming
-    	uart6.UART_Transmit(std::span<const uint8_t>(&NAK_BYTE, 1), 500);
+    	uart6.UART_Transmit(std::span<const uint8_t>(&ERR_FLASH_WRITE, 1), 500);
     	//constexpr std::string_view msg = "Hardware fault during programming"; // Debug purposes
     	// uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
     }
@@ -509,7 +516,7 @@ static void ParseIncomingStream(std::span<const uint8_t> incoming_chunk) {
 		case State::IDLE_START: {
 			if (byte == PACKET_START_BYTE) {
 				bytes_read = 0;
-				transfer_in_progress = 1; // Mark that we are alive
+				transfer_in_progress = true; // Mark that we are alive
 				ms_since_last_packet = 0;    // Reset inactivity countdown
 				current_state = State::READ_HEADER;
 			}

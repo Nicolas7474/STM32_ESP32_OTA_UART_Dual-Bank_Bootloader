@@ -46,10 +46,15 @@
 #define CMD_CHECK_UPDATE_REQ          0x25  // STM32 -> ESP32: "Check for updates!"
 #define CMD_REQ_UPDATE_SERVER         0x28  // STM32 -> ESP32: "You can update the new FW"
 
-#define PACKET_START_BYTE 0x02
-#define ACK_BYTE          0x06
-#define NAK_BYTE          0x15
-#define ERR_BYTE          0xEE
+#define PACKET_START_BYTE     0x02
+#define ACK_BYTE              0x06
+#define NAK_GENERIC           0x15
+#define NAK_CRC_ERROR         0x16
+#define NAK_VERSION_MISMATCH  0x17
+#define NAK_MAGIC_MISSING     0x18
+#define ERR_FLASH_ERASE       0xE1
+#define ERR_FLASH_WRITE       0xE2
+
 #define PAYLOAD_MAX_SIZE  512
 
 // ADDED: Explicit Context Enumerations to completely prevent stream-crossing memory bugs
@@ -94,6 +99,8 @@ typedef struct {
 } FirmwareStreamContext_t;
 
 static FirmwareStreamContext_t fw_ctx;
+
+static volatile bool ota_abort_requested = false; // Global state variable to allow safe aborts
 
 // Logging Tags for IDF Monitor tracking
 static const char *WIFI_TAG = "WIFI_MOD";
@@ -176,11 +183,11 @@ static bool send_packet_to_stm32(const uint8_t *payload, uint16_t len) {
     
     // Synchronous Frame transmission sequence: loops if corruption or timeout occurs
     while (retry_count < max_retries) {
-        ESP_LOGI(APP_TAG, "Sending Packet %d (Size: %d) ...", fw_ctx.packet_id, len);
-        
+        if (ota_abort_requested) return false;
+
+        ESP_LOGI(APP_TAG, "Sending Packet %d (Size: %d) ...", fw_ctx.packet_id, len);        
         // Clean UART queue before transmit to erase residual noise bytes
-        uart_flush_input(STM32_UART_PORT);
-        
+        uart_flush_input(STM32_UART_PORT);        
         // FIXED: Send the start_byte sequentially first, followed by the clean 12-byte header
         uart_write_bytes(STM32_UART_PORT, (const char*)&start_byte, 1);
         uart_write_bytes(STM32_UART_PORT, (const char*)&header, sizeof(FirmwareHeader_t));
@@ -192,27 +199,46 @@ static bool send_packet_to_stm32(const uint8_t *payload, uint16_t len) {
         int rx_len = uart_read_bytes(STM32_UART_PORT, &response, 1, pdMS_TO_TICKS(3000));
         
         if (rx_len > 0) {
-            if (response == ACK_BYTE) {
-                ESP_LOGI(APP_TAG, "ACK received from STM32!");
-                fw_ctx.packet_id++;
-                fw_ctx.accumulated_bytes_processed += len;
-                return true; // Transmit complete and verified, release function block
-            } else if (response == NAK_BYTE) {
-                retry_count++;
-                ESP_LOGW(APP_TAG, "NAK received! Retrying frame...");
-                vTaskDelay(pdMS_TO_TICKS(100)); // Brief cool-down period
-            } else if (response == ERR_BYTE) {
-                ESP_LOGE(APP_TAG, "CRITICAL: Flash error returned by STM32 bootloader.");
-                return false; // Flash space abort condition
-            } else {
-                retry_count++;
-                ESP_LOGW(APP_TAG, "Unexpected byte 0x%02X. Retrying...", response);
+              switch(response) {
+                case ACK_BYTE:
+                    ESP_LOGI(APP_TAG, "ACK received from STM32.");
+                    fw_ctx.packet_id++;
+                    fw_ctx.accumulated_bytes_processed += len;
+                    return true; // Frame complete, move to next network chunk
+                case NAK_CRC_ERROR:
+                    retry_count++;
+                    ESP_LOGW(APP_TAG, "STM32 reported NAK: CRC Line Corruption! Retrying packet %d (%d/%d)...", 
+                             fw_ctx.packet_id, retry_count, max_retries);
+                    vTaskDelay(pdMS_TO_TICKS(50));
+                    break;
+                case NAK_VERSION_MISMATCH:
+                    ota_abort_requested = true;
+                    ESP_LOGE(APP_TAG, "CRITICAL ABORT: App version compiled in .bin doesn't match manifest JSON!");
+                    return false; // Stop downloading from server immediately
+                case NAK_MAGIC_MISSING:
+                    ota_abort_requested = true;
+                    ESP_LOGE(APP_TAG, "CRITICAL ABORT: Valid 'VERS' metadata anchor missing from target address!");
+                    return false; // Stop pipeline
+                case ERR_FLASH_ERASE:
+                    ota_abort_requested = true;
+                    ESP_LOGE(APP_TAG, "HARDWARE FAULT: STM32 failed to physically erase internal flash sector.");
+                    return false; // Hardware dead end
+                case ERR_FLASH_WRITE:
+                    ota_abort_requested = true;
+                    ESP_LOGE(APP_TAG, "HARDWARE FAULT: Flash verification mismatch! Corrupted silicon or data write.");
+                    return false; // Hardware dead end
+                case NAK_GENERIC:
+                default:
+                    retry_count++;
+                    ESP_LOGW(APP_TAG, "Received unhandled or generic NAK (0x%02X). Retrying...", response);
+                    vTaskDelay(pdMS_TO_TICKS(100));
+                    break;
             }
         } else {
             retry_count++;
-            ESP_LOGW(APP_TAG, "Timeout waiting for ACK/NAK. Retrying...");
+            ESP_LOGW(APP_TAG, "Timeout waiting for STM32 response. Retrying...");
         }
-    }
+    } 
     return false;
 }
 
@@ -227,6 +253,8 @@ static esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
             HttpContextType_t context_type = *(HttpContextType_t*)evt->user_data;
             
             if (context_type == HTTP_CONTEXT_FIRMWARE_BINARY) {
+                if (ota_abort_requested) return ESP_FAIL; 
+        
                 // If this is the very first packet fragment, resolve total file size if provided by client layers
                 if (fw_ctx.total_file_size == 0) {
                     // The code reads the HTTP header (Content-Length) to see how large the overall file is.
@@ -253,10 +281,8 @@ static esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
                     if (fw_ctx.current_len == PAYLOAD_MAX_SIZE) {
                         if (!send_packet_to_stm32(fw_ctx.buffer, PAYLOAD_MAX_SIZE)) {
                             // If the UART communication fails (STM32 drops out, returns NAK or error)
-                            ESP_LOGE(APP_TAG, "Aborting download pipeline due to STM32 handshake fault.");
-                            // Forcing an internal client close breaks the network perform loop cleanly
-                            esp_http_client_cleanup(evt->client); // Halt the download immediately
-                            return ESP_FAIL;
+                            ESP_LOGE(APP_TAG, "Aborting download pipeline due to STM32 handshake fault.");                                                 
+                            return ESP_FAIL; // Tells HTTP client to halt execution cleanly
                         }
                         fw_ctx.current_len = 0; // Clear index window for next block
                         // If the ESP32 is busy processing UART bytes and hasn't finished its event handler, 
@@ -364,6 +390,7 @@ static void fetch_and_forward_firmware(void) {
     HttpContextType_t context_type = HTTP_CONTEXT_FIRMWARE_BINARY;
     
     // Reset and initialize context tracker fields
+    ota_abort_requested = false;
     memset(&fw_ctx, 0, sizeof(FirmwareStreamContext_t));
     fw_ctx.packet_id = 1;
 
@@ -387,7 +414,7 @@ static void fetch_and_forward_firmware(void) {
         if (status_code == 200) {
             // Check if there are remaining trailing bytes in the buffer 
             // after _http_event_handler has already processed the stream of all full-sized blocks
-            if (fw_ctx.current_len > 0) {
+            if (fw_ctx.current_len > 0 && !ota_abort_requested) {
                 // Apply 4-byte padding alignment constraints to the final sub-block if needed
                 int remainder = fw_ctx.current_len % 4;
                 if (remainder != 0) {
@@ -403,12 +430,22 @@ static void fetch_and_forward_firmware(void) {
                 // Changed length from PAYLOAD_MAX_SIZE to fw_ctx.current_len to perfectly replicate the unpadded tail payload slice
                 send_packet_to_stm32(fw_ctx.buffer, fw_ctx.current_len);
             }
-            ESP_LOGI(APP_TAG, "Flashing sequence finished! Processed: %d bytes total.", fw_ctx.accumulated_bytes_processed);
+            if (!ota_abort_requested) {
+                ESP_LOGI(APP_TAG, "Flashing sequence finished! Processed: %d bytes total.", fw_ctx.accumulated_bytes_processed); // [cite: 104]
+            } else {
+                ESP_LOGE(APP_TAG, "Flashing sequence stopped midway due to bootloader abort.");
+            }
+        } else {
+            ESP_LOGE(APP_TAG, "Server returned bad HTTP Code: %d", status_code);
+        }      
+    } else {       
+        // If perform failed because we deliberately returned ESP_FAIL in the handler:
+        if (ota_abort_requested) {
+            ESP_LOGE(APP_TAG, "Pipeline terminated: Aborted by STM32 request command.");
+        } else {
+            ESP_LOGE(APP_TAG, "HTTPS download pipe failed network layer: %s", esp_err_to_name(err)); // [cite: 105]
         }
-    } else {
-        ESP_LOGE(APP_TAG, "HTTPS download pipe failed: %s", esp_err_to_name(err));
-    }
-    
+    }    
     esp_http_client_cleanup(client);
 } 
 
