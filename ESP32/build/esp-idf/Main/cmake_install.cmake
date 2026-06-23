@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart/ESP32/Main
+# Install script for directory: C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/ESP32/Main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

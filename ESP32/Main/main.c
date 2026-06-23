@@ -158,9 +158,7 @@ static uint32_t calc_esp32_crc32(const uint8_t *data, size_t len) {
 
 static bool send_packet_to_stm32(const uint8_t *payload, uint16_t len) {
     FirmwareHeader_t header;
-    uint8_t start_byte = PACKET_START_BYTE;  
-    // Inside send_packet_to_stm32() on the ESP32:
-    ESP_LOGI(APP_TAG, "Packet BEFORE  total_crc = %u", header.total_crc);
+    uint8_t start_byte = PACKET_START_BYTE;   
 
     // Convert to Big-Endian network order for matching script definitions
     // __builtin_bswap functions swap bytes on runtime to ensure the data layouts match little-endian vs big-endian boundaries
@@ -171,8 +169,7 @@ static bool send_packet_to_stm32(const uint8_t *payload, uint16_t len) {
     header.version_minor = __builtin_bswap16(server_version_minor);
     header.total_crc   = __builtin_bswap32(server_firmware_crc);
 
-        // Inside send_packet_to_stm32() on the ESP32:
-    ESP_LOGI(APP_TAG, "Packet AFTER total_crc = %u", header.total_crc);
+    //ESP_LOGI(APP_TAG, "total_crc = %u", header.total_crc);
     
     // Generate individual slice frame verification token
     uint32_t payload_crc = calc_esp32_crc32(payload, len);

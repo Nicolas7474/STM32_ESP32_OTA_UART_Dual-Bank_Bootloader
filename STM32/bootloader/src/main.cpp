@@ -24,8 +24,6 @@
 #include "timers.h"
 #include <stdio.h> // for snprintf (debug purpose)
 
-#define CMD_REQ_UPDATE_SERVER  		  0x28  // STM32 -> ESP32: "You can update the new FW"
-
 // ============================================================================
 // CONFIGURATIONS, CONSTANTS & PROTOCOL MEMORY LAYOUT
 // ============================================================================
@@ -50,6 +48,7 @@ struct FlashSectorMap {
     uint32_t start_address;
 };
 
+
 // Packet constants
 constexpr uint8_t PACKET_START_BYTE 	= 0x02;
 constexpr uint8_t ACK_BYTE         		= 0x06;
@@ -59,6 +58,7 @@ constexpr uint8_t NAK_VERSION_MISMATCH  = 0x17; // Firmware version rejected
 constexpr uint8_t NAK_MAGIC_MISSING     = 0x18; // Metadata anchor verification failed
 constexpr uint8_t ERR_FLASH_ERASE       = 0xE1; // Flash erase routine hardware fault
 constexpr uint8_t ERR_FLASH_WRITE       = 0xE2; // Flash program routine hardware fault
+constexpr uint8_t CMD_REQ_UPDATE_SERVER = 0x28;  // STM32 -> ESP32: "You can update the new FW"
 
 // Explicit constants for our boot tracking state machine
 constexpr uint8_t STATE_RUN_BANK1      = 1;
@@ -479,7 +479,7 @@ void execute_flash_and_respond() {
     			uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
     			// Clean the hardware pipeline before leaving
     			//while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial ? if used, wait for DMA Stream to turn off
-    			while ((USART3->SR & USART_SR_TC) == 0 || (USART6->SR & USART_SR_TC));  // Wait for USART Transmission Complete (TC) flag
+    			while ((USART3->SR & USART_SR_TC) == 0 || (USART6->SR & USART_SR_TC) == 0);  // Wait for USART Transmission Complete (TC) flag
     			__disable_irq(); // Nothing can interrupt the reboot
     			NVIC_SystemReset(); // Reboot
     		} else {
@@ -718,7 +718,7 @@ int main() {
 		while(res6 != Bare_OK);
 
 		uart6.startReceiveToIdle_DMA(buffer_rx); // Starting listening to the uart byes of FW update file
-		uart6.UART_Transmit(std::array<uint8_t, 1>{CMD_REQ_UPDATE_SERVER}, 200); // Tells the ESP32: upload and forward to me the FW file
+		uart6.UART_Transmit(std::span<const uint8_t>(&CMD_REQ_UPDATE_SERVER, 1), 500); // Tells the ESP32: upload and forward to me the FW file
 		constexpr std::string_view msg = "Uploading FW....";
 		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
 
@@ -733,7 +733,6 @@ int main() {
 
 			GPIOD->ODR ^= GPIO_ODR_OD4;
 			NBdelay_ms(150); // blink wait to receive the uart bytes
-
 		}
 		return 0;
 	}

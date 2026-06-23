@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart/ESP32/build/bootloader/bootloader.elf
+file C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/ESP32/build/bootloader/bootloader.elf

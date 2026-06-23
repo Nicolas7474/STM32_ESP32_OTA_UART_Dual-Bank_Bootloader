@@ -1,2 +1,2 @@
-source C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart/ESP32/build/gdbinit/symbols
-source C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart/ESP32/build/gdbinit/connect
+source C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/ESP32/build/gdbinit/symbols
+source C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/ESP32/build/gdbinit/connect

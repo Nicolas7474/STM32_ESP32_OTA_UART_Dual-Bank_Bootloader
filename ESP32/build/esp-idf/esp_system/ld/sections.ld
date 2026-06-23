@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: C:\Users\Intel NUC\STM32CubeIDE\workspace_1.19.0\STM32-ESP32_Uart\ESP32\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: C:\Users\Intel NUC\STM32CubeIDE\workspace_1.19.0\STM32-ESP32_Uart_OTA\ESP32\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

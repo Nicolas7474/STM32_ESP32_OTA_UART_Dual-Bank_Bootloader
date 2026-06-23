@@ -14,7 +14,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="com.st.stm32cube.ide.cmake.cmakeTarget">
-				<src>C:\Users\Intel NUC\STM32CubeIDE\workspace_1.19.0\STM32-ESP32_Uart\STM32</src>
+				<src>C:\Users\Intel NUC\STM32CubeIDE\workspace_1.19.0\STM32-ESP32_Uart_OTA\STM32</src>
 				<build>Debug</build>
 				<generator>Ninja</generator>
 				<cmake_build_type>Debug</cmake_build_type>

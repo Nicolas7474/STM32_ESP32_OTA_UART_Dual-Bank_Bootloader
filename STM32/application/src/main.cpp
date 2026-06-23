@@ -26,7 +26,7 @@ std::array<uint8_t, 1024> buffer_Rx{}; // Sized to 1024 to easily hold a full 51
 __attribute__((section(".fw_metadata"), used))
 const FirmwareMetadata current_fw_info = {
     .magic_anchor  = 0x56455253,  // "VERS" ASCII literal
-    .version_major = 2,
+    .version_major = 1,
     .version_minor = 3,           // Your current running version
     .total_size    = 3428,        // Match your server JSON payload if known
     .total_crc     = 1140727448
@@ -140,7 +140,7 @@ int main() {
 }
 
 // ============================================================================
-// 		ISR
+// 			ISR
 // ============================================================================
 
 // PAO button input interrupt handler
@@ -197,6 +197,9 @@ extern "C" void UART_RxCpltCallback_DMA(const UartDriver& instance, std::span<co
                 		write_0xA();
                 		// Pass the array directly
                 		constexpr std::string_view msg = "New FW update has been found, will be installed at next start-up";
+                		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
+                	} else {
+                		constexpr std::string_view msg = "Firmware file has been found, but version is older. Won't be installed.";
                 		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
                 	}
                 	state = ParserState::WAIT_CMD; // Reset to hunt for the next command sequence

@@ -10,7 +10,7 @@
   "clangd.arguments": [
     "--background-index",
     "--query-driver=**",
-    "--compile-commands-dir=c:\\Users\\Intel NUC\\STM32CubeIDE\\workspace_1.19.0\\STM32-ESP32_Uart\\ESP32\\build"
+    "--compile-commands-dir=c:\\Users\\Intel NUC\\STM32CubeIDE\\workspace_1.19.0\\STM32-ESP32_Uart_OTA\\ESP32\\build"
   ],
   "idf.portWin": "COM19",
   "idf.flashType": "JTAG"
