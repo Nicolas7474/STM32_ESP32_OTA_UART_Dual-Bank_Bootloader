@@ -14,6 +14,7 @@
 #include "timers.h"
 #include <string.h>
 #include "uart3.hpp"
+#include <stdio.h> // for snrpintf
 
 #define CMD_CHECK_UPDATE_REQ          0x25  // STM32 -> ESP32: "Check for updates!"
 #define CMD_UPDATE_INFO_REPLY         0x20 // ESP32: "This is the FW version I fetched from server"
@@ -27,7 +28,7 @@ __attribute__((section(".fw_metadata"), used))
 const FirmwareMetadata current_fw_info = {
     .magic_anchor  = 0x56455253,  // "VERS" ASCII literal
     .version_major = 1,
-    .version_minor = 3,           // Your current running version
+    .version_minor = 2,           // Your current running version
     .total_size    = 3428,        // Match your server JSON payload if known
     .total_crc     = 1140727448
 };
@@ -128,9 +129,9 @@ int main() {
 	std::array<uint8_t, 1> tx_buffer = { static_cast<uint8_t>(bank_nb + '0') }; 	// Create a small local buffer to back up the data safely
 	uart3.UART_Transmit(tx_buffer, 200); 	// Pass the span cleanly. Note: Ensure tx_buffer remains in scope until the Tx completes!
 
-	NBdelay_ms(500);
-    GPIOG->ODR ^= GPIO_ODR_OD6;
-
+	char buf[16];
+	snprintf(buf, sizeof(buf), " Version: %d.%d ", (int)current_fw_info.version_major, (int)current_fw_info.version_minor);
+	uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(buf), strlen(buf)}, 500);
 
     while (true) {
     	NBdelay_ms(3000);
@@ -142,22 +143,6 @@ int main() {
 // ============================================================================
 // 			ISR
 // ============================================================================
-
-// PAO button input interrupt handler
-extern "C"  // Prevent C++ name mangling so the Assembly vector table can find this exact symbol
-void EXTI0_IRQHandler() {
-	if (EXTI->PR & (1<<0)) {  // button pushed : if the PA0 triggered the interrupt
-		EXTI->PR = (1<<0);  // Clear the interrupt flag by writing a 1
-		//write_0xA();
-		uint32_t current_tick = GetSysTick();
-		// Only register the press if 150ms have passed since the last valid press
-		if ((current_tick - last_debounce_tick) > 300) {
-			GPIOD->ODR ^= GPIO_ODR_OD4; //toggle orange
-			uart6.UART_Transmit(std::array<uint8_t, 1>{CMD_CHECK_UPDATE_REQ}, 200); // Modern C++ array literal (clean single-liner)
-			last_debounce_tick = current_tick; // Update the tracking timestamp
-		}
-	}
-}
 
 // Overrides the weak symbol automatically
 extern "C" void UART_RxCpltCallback_DMA(const UartDriver& instance, std::span<const uint8_t> incoming_data) {
@@ -192,15 +177,16 @@ extern "C" void UART_RxCpltCallback_DMA(const UartDriver& instance, std::span<co
                 case ParserState::WAIT_MINOR: {
                 	uint8_t minor = byte;
                 	// If version on the server is found newer, write 0x0A on the dedicated Flash storage sector
-                	if (major > current_fw_info.version_major ||
-                			(major == current_fw_info.version_major && minor > current_fw_info.version_minor)) {
+                	if (major > static_cast<uint8_t>(current_fw_info.version_major) ||
+                			(major == static_cast<uint8_t>(current_fw_info.version_major) && minor > static_cast<uint8_t>(current_fw_info.version_minor))) {
                 		write_0xA();
                 		// Pass the array directly
                 		constexpr std::string_view msg = "New FW update has been found, will be installed at next start-up";
                 		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
-                	} else {
-                		constexpr std::string_view msg = "Firmware file has been found, but version is older. Won't be installed.";
-                		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
+                	}
+                	else {
+                		constexpr std::string_view msg2 = "Firmware file has been found, but version is older. Won't be installed.";
+                		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg2.data()), msg2.size()}, 500);
                 	}
                 	state = ParserState::WAIT_CMD; // Reset to hunt for the next command sequence
                 	break;
@@ -208,4 +194,21 @@ extern "C" void UART_RxCpltCallback_DMA(const UartDriver& instance, std::span<co
             }
         }
     }
+}
+
+
+// PAO button input interrupt handler
+extern "C"  // Prevent C++ name mangling so the Assembly vector table can find this exact symbol
+void EXTI0_IRQHandler() {
+	if (EXTI->PR & (1<<0)) {  // button pushed : if the PA0 triggered the interrupt
+		EXTI->PR = (1<<0);  // Clear the interrupt flag by writing a 1
+		//write_0xA();
+		uint32_t current_tick = GetSysTick();
+		// Only register the press if 150ms have passed since the last valid press
+		if ((current_tick - last_debounce_tick) > 300) {
+			GPIOD->ODR ^= GPIO_ODR_OD4; //toggle orange
+			uart6.UART_Transmit(std::array<uint8_t, 1>{CMD_CHECK_UPDATE_REQ}, 200); // Modern C++ array literal (clean single-liner)
+			last_debounce_tick = current_tick; // Update the tracking timestamp
+		}
+	}
 }

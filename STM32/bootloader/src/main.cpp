@@ -442,7 +442,7 @@ void execute_flash_and_respond() {
     			flash_lock(); // Abort and signal failure
     			tot_fw_bytes_written = 0;
     			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
-    			transfer_in_progress = true; // Forces the watchdog to stay active and reboots after 4sec if the download doesn't restar
+    			transfer_in_progress = false; // No need to reboot endlessly every 4sec if the magic key is missing !
     			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_MAGIC_MISSING, 1), 500);
     			return;
     		}
@@ -460,7 +460,7 @@ void execute_flash_and_respond() {
     			flash_lock(); // Abort and signal failure
     			tot_fw_bytes_written = 0;
     			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
-    			transfer_in_progress = true; // Forces the watchdog to stay active and reboots after 4sec if the download doesn't restart
+    			transfer_in_progress = false; // No need to reboot endlessly every 4sec if the versions are not matched !
     			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_VERSION_MISMATCH, 1), 500);
     			return;
     		}
@@ -475,7 +475,7 @@ void execute_flash_and_respond() {
     			tot_fw_bytes_written = 0; // Reset counter for the next future update session
     			transfer_in_progress = false;
     			uart6.UART_Transmit(std::span<const uint8_t>(&ACK_BYTE, 1), 500);
-    			constexpr std::string_view msg = "New application fw flashed successfully, STM32 will reboot now."; // Debug purposes
+    			constexpr std::string_view msg = "New application FW flashed successfully, STM32 will reboot now."; // Debug purposes
     			uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
     			// Clean the hardware pipeline before leaving
     			//while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial ? if used, wait for DMA Stream to turn off
@@ -483,12 +483,11 @@ void execute_flash_and_respond() {
     			__disable_irq(); // Nothing can interrupt the reboot
     			NVIC_SystemReset(); // Reboot
     		} else {
-    			// MACRO IMAGE CORRUPTION DETECTED!
     			// Do NOT write the new bank state to Sector 13.
     			flash_lock();
     			tot_fw_bytes_written = 0;
     			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
-    			transfer_in_progress = true; // Forces the watchdog to stay active and reboots after 4sec if the download doesn't restar
+    			transfer_in_progress = false; // No need to reboot endlessly every 4sec if the CRC don't match !
     			// Blast back a NAK or an explicit ERR_BYTE so Python flags a flashing failure
     			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 2);
     			return;

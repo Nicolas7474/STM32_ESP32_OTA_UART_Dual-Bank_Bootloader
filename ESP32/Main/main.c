@@ -430,7 +430,7 @@ static void fetch_and_forward_firmware(void) {
             if (!ota_abort_requested) {
                 ESP_LOGI(APP_TAG, "Flashing sequence finished! Processed: %d bytes total.", fw_ctx.accumulated_bytes_processed); // [cite: 104]
             } else {
-                ESP_LOGE(APP_TAG, "Flashing sequence stopped midway due to bootloader abort.");
+                ESP_LOGE(APP_TAG, "Flashing sequence stopped due to bootloader abort.");
             }
         } else {
             ESP_LOGE(APP_TAG, "Server returned bad HTTP Code: %d", status_code);
