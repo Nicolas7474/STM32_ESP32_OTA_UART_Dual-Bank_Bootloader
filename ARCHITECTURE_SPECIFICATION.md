@@ -1,4 +1,4 @@
-### Project Architectural Overview: Dual-Bank Secure OTA Firmware Update System
+### fdgdfProject Architectural Overview: Dual-Bank Secure OTA Firmware Update System
 
 This project implements a custom, bare-metal **Dual-Bank Over-The-Air (OTA) Firmware Update System** distributed across two microcontrollers: an **ESP32** (acting as the network gateway) and an **STM32F469** (acting as the main host/motherboard running the core application).
 
