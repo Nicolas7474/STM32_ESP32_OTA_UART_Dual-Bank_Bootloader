@@ -10,6 +10,32 @@
 #include <cstring>    // For std::memcpy
 #include <algorithm>  // For std::min
 
+// ============================================================================
+// COMPILE-TIME MCU BUS CLOCK LOOKUP
+// ============================================================================
+// Detects standard STM32 macro targets and configures peripheral clock speeds
+#if defined(STM32F469xx) || defined(STM32F479xx) || defined(STM32F429xx) || defined(STM32F439xx)
+    #define APB1_CLOCK_FREQ   45000000U  // 45 MHz
+    #define APB2_CLOCK_FREQ   90000000U  // 90 MHz
+
+#elif defined(STM32F407xx) || defined(STM32F417xx) || defined(STM32F405xx) || defined(STM32F415xx)
+    #define APB1_CLOCK_FREQ   42000000U  // 42 MHz
+    #define APB2_CLOCK_FREQ   84000000U  // 84 MHz
+
+#elif defined(STM32F411xE)
+    #define APB1_CLOCK_FREQ   50000000U  // 50 MHz
+    #define APB2_CLOCK_FREQ   100000000U // 100 MHz
+
+#elif defined(STM32F401xC) || defined(STM32F401xE)
+    #define APB1_CLOCK_FREQ   42000000U  // 42 MHz
+    #define APB2_CLOCK_FREQ   84000000U  // 84 MHz
+
+#else
+    // Default Fallback configuration (e.g., Standard STM32F469 180MHz tree defaults)
+    #define APB1_CLOCK_FREQ   45000000U
+    #define APB2_CLOCK_FREQ   90000000U
+#endif
+
 
 //#define USE_COBS
 #if defined(USE_COBS)
@@ -37,15 +63,28 @@ extern "C" {
 
 // Handles the strict, unchangeable hardware connections for UART3, acts as a pin guard so that other instances cannot steal these pins
 static void USART3_LowLevelInit(void) {
-    // Enable USART3 and GPIOB Clocks
+    // Enable peripheral clocks (USART3 is on APB1, GPIOB and DMA1 are on AHB1)
     RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-    // Configure Pin PB10 (TX) and PB11 (RX) for Alternate Function 7
-    GPIOB->MODER   |= (2 << GPIO_MODER_MODER10_Pos)   | (2 << GPIO_MODER_MODER11_Pos);
-    GPIOB->OSPEEDR |= (3 << GPIO_OSPEEDR_OSPEED10_Pos) | (3 << GPIO_OSPEEDR_OSPEED11_Pos);
-    GPIOB->AFR[1]  |= (7 << GPIO_AFRH_AFSEL10_Pos)    | (7 << GPIO_AFRH_AFSEL11_Pos);
-    // Enable DMA1 Clock
-    RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+
+    // 1. CLAMP BOTH LINES HIGH: Set Pull-up (0b01) on PB10 (TX) and PB11 (RX)
+    // Prevents PB10 from sagging low during mode transition
+    GPIOB->PUPDR &= ~((3U << 20) | (3U << 22)); // Clear bits for Pin 10 & 11
+    GPIOB->PUPDR |=  ((1U << 20) | (1U << 22)); // Set Pull-up (01)
+
+    // 2. MAP MUX FIRST: Route Pin 10 and Pin 11 to AF7 (USART3)
+    // AFR[1] handles pins 8-15. Pin 10 is index 2, Pin 11 is index 3.
+    GPIOB->AFR[1] &= ~((15U << 8) | (15U << 12)); // Clear 4-bit fields
+    GPIOB->AFR[1] |=  ((7U  << 8) | (7U  << 12)); // Set AF7 (0111)
+
+    // 3. ENGAGE PINS: Safely switch to Alternate Function Mode (0b10)
+    GPIOB->MODER &= ~((3U << 20) | (3U << 22));
+    GPIOB->MODER |=  ((2U << 20) | (2U << 22));
+
+    // 4. SPEED: Configure High Speed (0b10) or Very High Speed (0b11)
+    // Matching your original choice of '3' (Very High Speed)
+    GPIOB->OSPEEDR &= ~((3U << 20) | (3U << 22));
+    GPIOB->OSPEEDR |=  ((3U << 20) | (3U << 22));
 }
 
 // Handles the strict, unchangeable hardware connections for UART6, acts as a pin guard so that other instances cannot steal these pins
@@ -53,7 +92,6 @@ static void USART6_LowLevelInit(void) {
     // Enable peripheral clocks
     RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
-    RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
 
     // 1. CLAMP BOTH LINES HIGH: Set Pull-up (0b01) on PC6 (TX) and PC7 (RX)
     // This stops PC6 from sagging low (Tx frame error) at init !
@@ -111,9 +149,13 @@ BareM_StatusTypeDef UartDriver::init(uint32_t baudrate) {
     // 2. CRUCIAL: Clear configuration flags first, but keep UE (Peripheral Enable) DISABLED for now
     config.usart->CR1 &= ~(USART_CR1_UE | USART_CR1_M | USART_CR1_RE | USART_CR1_TE);
 
-    // 3. Calculate and Set Baud Rate safely while the peripheral hardware engine is quiet
-    uint32_t pclk = (config.usart == USART1 || config.usart == USART6) ? 90000000 : 45000000;
-    uint32_t usartdiv = (pclk + (baudrate / 2)) / baudrate;
+    // 3. Dynamic Baud Rate Calculation using compile-time lookups
+    uint32_t pclk_hz = APB1_CLOCK_FREQ;
+    if (config.usart == USART1 || config.usart == USART6) {
+    	pclk_hz = APB2_CLOCK_FREQ;
+    }
+    // Calculate and Set Baud Rate safely while the peripheral hardware engine is quiet
+    uint32_t usartdiv = (pclk_hz + (baudrate / 2)) / baudrate;
     config.usart->BRR = usartdiv;
 
     // 4. Configure NVIC Interrupt Vectors
@@ -135,20 +177,28 @@ BareM_StatusTypeDef UartDriver::init(uint32_t baudrate) {
 }
 
 void UartDriver::ConfigureDma() {
-    if (this->isDmaInitialized) return; // Exit immediately if already run once
+	if (this->isDmaInitialized) return; // Exit immediately if already run once
 
-    // 1. Configure DMA RX Stream (Circular buffer routing)
-    config.rxStream->CR &= ~DMA_SxCR_EN;
-    while (config.rxStream->CR & DMA_SxCR_EN);
+	// Enable the clock before touching the register
+	if (config.dmaBase == DMA1) {
+		RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+	}
+	else if (config.dmaBase == DMA2) {
+		RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+	}
 
-    config.rxStream->CR |= (config.dmaChannel << DMA_SxCR_CHSEL_Pos)
+	// Configure DMA RX Stream (Circular buffer routing)
+	config.rxStream->CR &= ~DMA_SxCR_EN;
+	while (config.rxStream->CR & DMA_SxCR_EN);
+
+	config.rxStream->CR |= (config.dmaChannel << DMA_SxCR_CHSEL_Pos)
                         | DMA_SxCR_PL_0   // Priority: Medium
                         | DMA_SxCR_MINC   // Memory Increment Mode enabled
                         | DMA_SxCR_CIRC   // Circular Mode enabled
                         | DMA_SxCR_TCIE;   // Interrupt at byte 1024
                         //| DMA_SxCR_HTIE;  // Interrupt at byte 512
 
-    // 2. Configure DMA TX Stream (Normal transmission mode)
+    // Configure DMA TX Stream (Normal transmission mode)
     config.txStream->CR &= ~DMA_SxCR_EN;
     while (config.txStream->CR & DMA_SxCR_EN);
 
@@ -161,7 +211,7 @@ void UartDriver::ConfigureDma() {
     NVIC_SetPriority(config.txDmaIrq, 5);
     NVIC_EnableIRQ(config.txDmaIrq);
 
-    // 3. Mark as initialized so this blocks never executes again
+    // Mark as initialized so this blocks never executes again
     this->isDmaInitialized = true;
 }
 
@@ -183,6 +233,7 @@ BareM_StatusTypeDef UartDriver::UART_Transmit_DMA(std::span<const uint8_t> messa
 	while (this->tx_link != LinkState::Idle) {
 		if (GetSysTick() - timeout_counter > 5) return Bare_TIMEOUT;
 	}
+
 	if (config.usart == USART3) {
 		config.dmaBase->LIFCR = (0x3DUL << 22);
 	}
