@@ -107,115 +107,67 @@ This architecture ensures that if a catastrophic application error occurs, a har
 
 
 
-
-
-
-
-
-
-
-
-
-
 ### 3. Step-by-Step Update Execution Flow
 
 The full lifecycle of an update follows a strict, highly coordinated dance between the two microcontrollers:
 
 
-` ESP32 (Gateway)                                                    STM32F469 (Host)`
+ESP32 (Gateway)                                                    STM32F469 (Host)
+================                                                   ==================
 
-`================                                                   ==================`
+(Connects Wi-Fi)                                                  (Bootloader jumps to Application)
 
+       | <--- [1. Request Version] -------------------------------- | (Running Application layer)
 
-`(Connects Wi-Fi)    								     (Bootloader jumps to Application) `
+(Queries Manifest JSON)
 
-`       | \<--- \[1. Request Version\] -------------------------------- | (Running Application layer)    `
+       | ---- [2. Returns Server Version (e.g., v1.2)] -----------> | (Application layer compares it against current
+       |                                                            | version stored in Flash at section .fw_metada
+       |                                                            | (e.g., v1.0) and detects version minor is higher)
 
-`(Queries Manifest JSON)                                                   `
+       | ---- [3. Wait for next reboot to perform the update] ----- | Writes 0x0A (new FW available on server) to Sect 13
+       |                                                            | [System Reboots manually]
+       |                                                            | [Bootloader wakes up]
 
-`       | ---- \[2. Returns Server Version (e.g., v1.2)\] -----------\> | (Application layer compares it against current `
+       | <--- [4. Sends Request Firmware Byte (0x28)] ------------- |
 
-`       |                                                            |  version stored in Flash at section .fw\_metada `
+[Downloads App Binary via HTTPS]                                    | [Enters Parse Stream Loop]
+[Buffers first 512B Block]
 
-`	 |										   | (e.g. v1.0) and detects version minor is higher		 |                                                            |                                                            `
+  +----+
+  | Loop for each chunk
+  v    |
 
-`       | ---- \[3. Wait for next reboot to perform the update\] ----- | Writes 0x0A (new FW available on server) to Sect 13                                                              `
+       | ---- [5. Transmits Frame: Header + Data Payload + CRC] --> | [Parses Stream FSM]
+       |                                                            | [Validates Packet CRC]
+       |                                                            | [Evaluates Target Sector]
 
-`       |                                                            | \[System Reboots manually\]`
+       | <--- [6. Transmits Packet WAIT_BYTE (0x19)] -------------- | [Erase Flash if crossing a new Sector]
+(increased timeout for Erase time)                                  | [On-the-fly Flash Erase]
+       |                                                            | [Programs Block to Flash]
 
-`       |                                                            | \[Bootloader wakes up\]`
+       | <--- [7. Transmits Packet ACK (0x06)] -------------------- | [Advances Flash Pointers]
 
-`       | \<--- \[4. Sends Request Firmware Byte (0x28)\] ------------- | `
+  +----+
+  | End Loop
+  v    |
 
-`       |                                                            |`
+https transaction ends, all full-packets (512B) are stored,
+checks for remaining bytes and append to buffer
 
-`\[Downloads App Binary via HTTPS\]                                    | \[Enters Parse Stream Loop\]`
+       | ---- [8. Transmits Remaining Tail Bytes] -----------------> | [Total Bytes Received Match]
+       |                                                            | [Checks Magic Anchor "VERS"]
+       |                                                            | [Verifies Major/Minor Match]
+       |                                                            | [Runs Comprehensive Global CRC]
+       |                                                            | [Writes New Target Bank to Sec 13]
 
-`\[Buffers first 512B Block\]                                          |`
+       | <--- [9. Transmits Final Success ACK] -------------------- | [Clears Local States]
+       |                                                            | [Flushes UART Pipelines]
+       |                                                            | [Invokes NVIC_SystemReset()]
 
-`       |                                                            |`
-
-`  +----+                                                            |`
-
-`  | Loop for each chunk                                             |`
-
-`  v    |                                                            |`
-
-`       | ---- \[5. Transmits Frame: Header + Data Payload + CRC\] --\> |`
-
-`       |                                                            | \[Parses Stream FSM\]`
-
-`       |                                                            | \[Validates Packet CRC\]`
-
-`       |                                                            | \[Evaluates Target Sector\]`
-
-`   	 | \<--- \[6. Transmits Packet WAIT\_BYTE (0x19)\] -------------- | \[Erase Flash if crossing a new Sector\]`
-
-`(increased timeout for Erase time)						   | \[On-the-fly Flash Erase\]                                                                    `
-
-`       |                                                            | \[Programs Block to Flash\]`
-
-`       | \<--- \[7. Transmits Packet ACK (0x06)\] -------------------- | \[Advances Flash Pointers\]`
-
-`       |                                                            |`
-
-`  +----+                                                            |`
-
-`  | End Loop                                                        |`
-
-`  v    |                                                            |`
-
-`https transaction ends, all full-packets (512B) are 		         |   
-stored, checks for remaining bytes and append to buffer		   |`
-
-`	 | ---- \[8. Transmits Remaining Tail Bytes \] ---------------\> |`
-
-`       |                                                            | \[Total Bytes Received Match\]`
-
-`       |                                                            | \[Checks Magic Anchor "VERS"\]`
-
-`       |                                                            | \[Verifies Major/Minor Match\]`
-
-`       |                                                            | \[Runs Comprehensive Global CRC\]`
-
-`       |                                                            | \[Writes New Target Bank to Sec 13\]`
-
-`       | \<--- \[9. Transmits Final Success ACK\] -------------------- | \[Clears Local States\]`
-
-`       |                                                            | \[Flushes UART Pipelines\]`
-
-`       |                                                            | \[Invokes NVIC\_SystemReset()\]`
-
-`                                                                    |                                                                           `
-
-`                                                                 \[BOOTLOADER REBOOTS\]`
-
-`                                                                 \[Reads New Bank Choice\]`
-
-`                                                                 \[Sets UFB\_MODE for Swap\]`
-
-`                                                                 \[Fetches App Linker MSP\]`
-
-`                                                                 \[Launches Reset\_Handler\]`
-
-`                                                                 \[New Application Boots Successfully!\]`
+                                                                    | [BOOTLOADER REBOOTS]
+                                                                    | [Reads New Bank Choice]
+                                                                    | [Sets UFB_MODE for Swap]
+                                                                    | [Fetches App Linker MSP]
+                                                                    | [Launches Reset_Handler]
+                                                                    | [New Application Boots Successfully!]
