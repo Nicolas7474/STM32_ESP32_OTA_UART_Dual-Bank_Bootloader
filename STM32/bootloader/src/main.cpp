@@ -881,4 +881,5 @@ This means:
 
 The volatile nature of the register is no longer a glitch—it becomes a feature!
 It guarantees your bootloader in Bank 1 always gets a chance to wake up first, read the flash memory state, and safely route the processor exactly where it belongs.
+
 */

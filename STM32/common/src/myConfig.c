@@ -98,41 +98,58 @@ void SysClockConfig (void)
 
 void GPIO_Config (void)
 {
-	// 1. Enable the GPIO CLOCK
-	RCC->AHB1ENR |= (1<<0); // GPIO-A
-	RCC->AHB1ENR |= (1<<1); // GPIO-B
-	RCC->AHB1ENR |= (1<<3); // GPIO-D
-	RCC->AHB1ENR |= (1<<6); // GPIO-G
-	RCC->AHB1ENR |= (1<<10); // GPIO-K
+    // 1. ENABLE THE GPIO PERIPHERAL CLOCKS (Safe Bitwise OR)
+    RCC->AHB1ENR |= (1 << 0);  // GPIO-A
+    // Note: GPIO-B clock is already enabled in USART3_LowLevelInit
+    RCC->AHB1ENR |= (1 << 3);  // GPIO-D
+    RCC->AHB1ENR |= (1 << 6);  // GPIO-G
+    RCC->AHB1ENR |= (1 << 10); // GPIO-K
 
-	// 2. Set the Pins as OUTPUT / INPUT
-	GPIOA->MODER &= ~(3<<0);  // pin PA0(bits 1:0)
-	GPIOB->MODER &= ~(3<<24); // PB12 input mode
-	// error GPIOG->MODER |= (1<<21);  //
-	GPIOG->MODER |= (1<<12);  // pin PG6(bits 13:12) as Output (01) - Green Led
-	GPIOK->MODER |= (1<<6);  // pin PK3(bits 7:6) as Output (01)
-	GPIOG->MODER &= ~(3<<26);  // pin PG13 as Output
-	GPIOG->MODER |= (1<<26);  // pin PG13 as Output
-	GPIOD->MODER |= (1<<8);  // pin PD4 as Output (01) - Orange Led
-	GPIOD->MODER |= (1<<10);  // pin PD4 as Output (01) - Rouge Led
-	GPIOA->MODER &= ~(3U << (8 * 2)); // PA8 in input mode
+    // 2. CONFIGURE PIN DIRECTIONS (MODER: 00=Input, 01=Output, 10=Alt, 11=Analog)
+    // PA0 -> Input Mode (00)
+    GPIOA->MODER &= ~(3U << 0);
+    // PB12 -> Input Mode (00)
+    GPIOB->MODER &= ~(3U << 24);
+    // PA8 -> Input Mode (00)
+    GPIOA->MODER &= ~(3U << 16);
 
-	// 3. Configure the OUTPUT MODE
-	GPIOA->PUPDR &= ~(1<<0); // input, 00: No pull-up, pull-down
-	GPIOA->PUPDR &= ~(1<<1); // input, 00: No pull-up, pull-down
-	GPIOA->OSPEEDR &= ~(1<<30 | 1<<31);
-	GPIOB->PUPDR &= ~(1<<24 | 1<<25); // PB12 input, 00: No pull-up, no pull-down
-	GPIOG->OTYPER = 1;
-	GPIOG->OSPEEDR = 0;
-	GPIOK->OTYPER = 1;
-	GPIOK->OSPEEDR = 0;
-	GPIOG->OTYPER &= ~(1 << 13); // PG13 Push Pull Output
-	GPIOG->OSPEEDR &= ~(3U << (26)); // PG13 Low Speed
-	GPIOG->BSRR = (1U << 13); // set the PG13 to #1
-	GPIOD->OTYPER &= ~(1 << 4); // orange Led PD4 in P-P
-	GPIOD->OTYPER &= ~(1 << 5); // rouge Led PD4 in P-P
-	GPIOA->PUPDR &= ~(3U << (8 * 2)); // PA8 01: Pull-up
-	GPIOA->PUPDR |= (1 << (8 * 2)); // PA8 01: Pull-up
+    // PG6 -> Output Mode (01) [Green LED]
+    GPIOG->MODER &= ~(3U << 12); // Clear bits 13:12
+    GPIOG->MODER |=  (1U << 12); // Set bit 12 to 1 (01)
+    // PG13 -> Output Mode (01)
+    GPIOG->MODER &= ~(3U << 26); // Clear bits 27:26
+    GPIOG->MODER |=  (1U << 26); // Set bit 26 to 1 (01)
+    // PK3 -> Output Mode (01)
+    GPIOK->MODER &= ~(3U << 6);  // Clear bits 7:6
+    GPIOK->MODER |=  (1U << 6);  // Set bit 6 to 1 (01)
+    // PD4 -> Output Mode (01) [Orange LED]
+    GPIOD->MODER &= ~(3U << 8);  // Clear bits 9:8
+    GPIOD->MODER |=  (1U << 8);  // Set bit 8 to 1 (01)
+    // PD5 -> Output Mode (01) [Red LED]
+    GPIOD->MODER &= ~(3U << 10); // Clear bits 11:10
+    GPIOD->MODER |=  (1U << 10); // Set bit 10 to 1 (01)
+
+
+    // 3. CONFIGURE PIN CHARACTERISTICS (PUPDR, OTYPER, OSPEEDR)
+    // PA0 -> No Pull-Up, No Pull-Down (00)
+    GPIOA->PUPDR &= ~(3U << 0);
+    // PB12 -> No Pull-Up, No Pull-Down (00)
+    GPIOB->PUPDR &= ~(3U << 24);
+    // PA8 -> Pull-Up Resistor Enabled (01)
+    GPIOA->PUPDR &= ~(3U << 16); // Clear bits 17:16
+    GPIOA->PUPDR |=  (1U << 16); // Set to 01 (Pull-up)
+    // PG6 & PG13 (Port G Outputs) -> Push-Pull, Low Speed (Safe masking)
+    GPIOG->OTYPER  &= ~((1U << 6) | (1U << 13));  // 0 = Push-Pull
+    GPIOG->OSPEEDR &= ~((3U << 12) | (3U << 26)); // 00 = Low Speed
+    // PK3 (Port K Output) -> Push-Pull, Low Speed (Safe masking)
+    GPIOK->OTYPER  &= ~(1U << 3);
+    GPIOK->OSPEEDR &= ~(3U << 6);
+    // PD4 & PD5 (Port D LEDs) -> Push-Pull
+    GPIOD->OTYPER  &= ~((1U << 4) | (1U << 5));
+
+    // 4. INITIAL BIT STATE
+    // Drive PG13 high immediately using the Atomic Bit Set/Reset Register
+    GPIOG->BSRR = (1U << 13);
 }
 
 
