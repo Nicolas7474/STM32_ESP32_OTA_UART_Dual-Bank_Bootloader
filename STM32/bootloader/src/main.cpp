@@ -16,13 +16,12 @@
 #include <type_traits>
 #include <concepts>
 //#include <cstdio>
-//#include "memory_map.hpp"
 #include "stm32f469xx.h"
 #include "uart3.hpp"
 #include "myConfig.h"
 #include "firmware_header.hpp"
 #include "timers.h"
-#include <stdio.h> // for snprintf (debug purpose)
+#include <stdio.h> // snprintf
 
 // ============================================================================
 // CONFIGURATIONS, CONSTANTS & PROTOCOL MEMORY LAYOUT
@@ -124,7 +123,7 @@ inline constexpr std::array<FlashSectorMap, 12> bank2_sectors{{
 volatile State current_state = State::IDLE_START;
 PacketHeader header = {0, 0, 0, 0, 0, 0};
 uint8_t payload_buffer[512]; // Matches our max expected packet size
-uint32_t incoming_crc = 0;
+uint32_t incoming_crc = 0; // Hard-coded CRC32 value of incoming chunk (packet)
 uint32_t bytes_read = 0;
 constexpr uint32_t INACTIVITY_TIMEOUT_MS = 4000; // 4 seconds of silence = abort
 volatile uint32_t last_debounce_tick = 0;
@@ -850,7 +849,9 @@ extern "C" void EXTI0_IRQHandler(void) {
 
 
 /*
- Every time the board powers up or undergoes a hard reset, your code executes this exact sequence:
+ * NOTES
+
+Every time the board powers up or undergoes a hard reset, your code executes this exact sequence:
     The Magic Check: The CPU checks a single address (0x08107FFC).
     The Self-Heal (Day 1): If the board just came off the factory assembly line and is filled with noise/zeros,
     the magic number isn't there. The bootloader immediately calls format_sector13_fresh(),

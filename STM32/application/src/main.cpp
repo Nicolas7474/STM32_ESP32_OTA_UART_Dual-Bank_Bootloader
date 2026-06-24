@@ -3,7 +3,7 @@
  * @file main.cpp
  * @brief STM32F469 Custom Bare-Metal C++ Bootloader
  */
-//rouge    GPIOD->ODR ^= GPIO_ODR_OD5;
+
 #include "memory_map.hpp"
 #include "firmware_header.hpp"
 #include <cstdint>
@@ -14,7 +14,7 @@
 #include "timers.h"
 #include <string.h>
 #include "uart3.hpp"
-#include <stdio.h> // for snrpintf
+#include <stdio.h> // snprintf
 
 #define CMD_CHECK_UPDATE_REQ          0x25  // STM32 -> ESP32: "Check for updates!"
 #define CMD_UPDATE_INFO_REPLY         0x20 // ESP32: "This is the FW version I fetched from server"
@@ -27,8 +27,8 @@ std::array<uint8_t, 1024> buffer_Rx{}; // Sized to 1024 to easily hold a full 51
 __attribute__((section(".fw_metadata"), used))
 const FirmwareMetadata current_fw_info = {
     .magic_anchor  = 0x56455253,  // "VERS" ASCII literal
-    .version_major = 1,
-    .version_minor = 2,           // Your current running version
+    .version_major = 1,			  // Your current running version
+    .version_minor = 2,           // Change version (higher), build and upload the resulting application.bin file to the server
     .total_size    = 3428,        // Match your server JSON payload if known
     .total_crc     = 1140727448
 };
@@ -54,7 +54,6 @@ static void flash_unlock() {
         FLASH->KEYR = 0xCDEF89ABU;
     }
 }
-
 
 static uint8_t get_active_bank_choice() {
     // Enable SYSCFG clock just in case it was turned off
@@ -94,7 +93,7 @@ static void write_0xA() {
     	address++;
     }
 
-    // FALLBACK: If the code reaches here, Sector 13 is full!
+    // Fallback: If the code reaches here, Sector 13 is full!
     // We must erase the sector to reset the wear-leveling tracking block.
     flash_unlock();
     // Sector 13 Erase Sequence (Sector 13, Voltage Range x32 assumed for 3.3V)
@@ -117,9 +116,9 @@ static void write_0xA() {
 int main() {
 	initialize_hardware();
 	GPIOD->ODR ^= GPIO_ODR_OD4;
+
 	BareM_StatusTypeDef res3 = uart3.init(115200);
 	while(res3 != Bare_OK);
-
 	BareM_StatusTypeDef res6 = uart6.init(1500000); // 1.5 Mbps
 	while(res6 != Bare_OK);
 

@@ -173,7 +173,7 @@ static bool send_packet_to_stm32(const uint8_t *payload, uint16_t len) {
     //ESP_LOGI(APP_TAG, "total_crc = %u", header.total_crc);
     
     // Generate individual slice frame verification token
-    uint32_t payload_crc = calc_esp32_crc32(payload, len);
+    uint32_t payload_crc = calc_esp32_crc32(payload, len); // calculate the CRC for the current chunk
     uint32_t payload_crc_be = __builtin_bswap32(payload_crc);
     
     int max_retries = 3;
