@@ -153,9 +153,10 @@ ESP32 (Gateway)                                                    STM32F469 (Ho
   v    |
 
 https transaction ends, all full-packets (512B) are stored,
+
 checks for remaining bytes and append to buffer
 
-       | ---- [8. Transmits Remaining Tail Bytes] -----------------> | [Total Bytes Received Match]
+       | ---- [8. Transmits Remaining Tail Bytes] ----------------> | [Total Bytes Received Match]
        |                                                            | [Checks Magic Anchor "VERS"]
        |                                                            | [Verifies Major/Minor Match]
        |                                                            | [Runs Comprehensive Global CRC]
