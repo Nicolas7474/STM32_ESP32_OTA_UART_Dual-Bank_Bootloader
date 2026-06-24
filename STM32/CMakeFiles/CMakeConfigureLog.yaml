@@ -1,0 +1,2079 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineSystem.cmake:207 (message)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      The target system is: Generic -  - arm
+      The host system is: Windows - 10.0.22621 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeNinjaFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Program used to build from build.ninja files."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ninja-build"
+      - "ninja"
+      - "samu"
+    candidate_directories:
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/msys64/ucrt64/bin/ninja-build.com"
+      - "C:/msys64/ucrt64/bin/ninja-build.exe"
+      - "C:/msys64/ucrt64/bin/ninja-build"
+      - "C:/msys64/ucrt64/bin/ninja.com"
+    found: "C:/msys64/ucrt64/bin/ninja.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/msys64/ucrt64/share/cmake/Modules/"
+    found: "C:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc.exe 
+      Build flags: -mcpu=cortex-m4;-mthumb;-mfpu=fpv4-sp-d16;-mfloat-abi=hard
+      Id flags:  
+      
+      The output was:
+      1
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-exit.o): in function `exit':
+      (.text.exit+0x14): undefined reference to `_exit'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_exit): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-exit.o)
+      (.text.exit+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-closer.o): in function `_close_r':
+      (.text._close_r+0xc): undefined reference to `_close'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_close): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-closer.o)
+      (.text._close_r+0xc): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      (.text._lseek_r+0x14): undefined reference to `_lseek'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_lseek): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-lseekr.o)
+      (.text._lseek_r+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-readr.o): in function `_read_r':
+      (.text._read_r+0x14): undefined reference to `_read'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_read): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-readr.o)
+      (.text._read_r+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-writer.o): in function `_write_r':
+      (.text._write_r+0x14): undefined reference to `_write'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_write): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-writer.o)
+      (.text._write_r+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
+      (.text._sbrk_r+0xc): undefined reference to `_sbrk'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_sbrk): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-sbrkr.o)
+      (.text._sbrk_r+0xc): dangerous relocation: unsupported relocation
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/msys64/ucrt64/share/cmake/Modules/"
+    found: "C:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc.exe 
+      Build flags: -mcpu=cortex-m4;-mthumb;-mfpu=fpv4-sp-d16;-mfloat-abi=hard
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/4.3.2/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-ar"
+      - "ar"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-ar.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-ranlib"
+      - "ranlib"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-ranlib.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-strip"
+      - "strip"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-strip.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-strip.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-ld"
+      - "ld"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-ld.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-ld.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-nm"
+      - "nm"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-nm.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-nm.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-objdump"
+      - "objdump"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-objdump.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-objdump.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-readelf"
+      - "readelf"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-readelf.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-readelf.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-dlltool"
+      - "dlltool"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-dlltool.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-dlltool.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-dlltool"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-dlltool.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-dlltool.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-dlltool"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-dlltool.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-dlltool.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-dlltool"
+      - "C:/msys64/usr/bin/arm-none-eabi-dlltool.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-dlltool.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/arm-none-eabi-dlltool"
+      - "C:/Windows/arm-none-eabi-dlltool.com"
+      - "C:/Windows/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/wbem/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-dlltool"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-dlltool.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-dlltool.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-dlltool"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-dlltool.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-dlltool.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-dlltool"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-dlltool.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-dlltool.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-dlltool"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/dlltool.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/dlltool.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/dlltool"
+      - "C:/msys64/ucrt64/bin/dlltool.com"
+    found: "C:/msys64/ucrt64/bin/dlltool.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-addr2line"
+      - "addr2line"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-addr2line.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-addr2line.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-tapi"
+      - "tapi"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-tapi.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-tapi.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-tapi"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-tapi.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-tapi.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-tapi"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-tapi.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-tapi.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-tapi"
+      - "C:/msys64/usr/bin/arm-none-eabi-tapi.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-tapi.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-tapi"
+      - "C:/Windows/System32/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/arm-none-eabi-tapi"
+      - "C:/Windows/arm-none-eabi-tapi.com"
+      - "C:/Windows/arm-none-eabi-tapi.exe"
+      - "C:/Windows/arm-none-eabi-tapi"
+      - "C:/Windows/System32/wbem/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-tapi"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-tapi"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-tapi.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-tapi.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-tapi"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-tapi.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-tapi.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-tapi"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-tapi.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-tapi.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-tapi"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/tapi.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/tapi.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/tapi"
+      - "C:/msys64/ucrt64/bin/tapi.com"
+      - "C:/msys64/ucrt64/bin/tapi.exe"
+      - "C:/msys64/ucrt64/bin/tapi"
+      - "C:/msys64/usr/local/bin/tapi.com"
+      - "C:/msys64/usr/local/bin/tapi.exe"
+      - "C:/msys64/usr/local/bin/tapi"
+      - "C:/msys64/usr/bin/tapi.com"
+      - "C:/msys64/usr/bin/tapi.exe"
+      - "C:/msys64/usr/bin/tapi"
+      - "C:/Windows/System32/tapi.com"
+      - "C:/Windows/System32/tapi.exe"
+      - "C:/Windows/System32/tapi"
+      - "C:/Windows/tapi.com"
+      - "C:/Windows/tapi.exe"
+      - "C:/Windows/tapi"
+      - "C:/Windows/System32/wbem/tapi.com"
+      - "C:/Windows/System32/wbem/tapi.exe"
+      - "C:/Windows/System32/wbem/tapi"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi"
+      - "C:/msys64/usr/bin/site_perl/tapi.com"
+      - "C:/msys64/usr/bin/site_perl/tapi.exe"
+      - "C:/msys64/usr/bin/site_perl/tapi"
+      - "C:/msys64/usr/bin/vendor_perl/tapi.com"
+      - "C:/msys64/usr/bin/vendor_perl/tapi.exe"
+      - "C:/msys64/usr/bin/vendor_perl/tapi"
+      - "C:/msys64/usr/bin/core_perl/tapi.com"
+      - "C:/msys64/usr/bin/core_perl/tapi.exe"
+      - "C:/msys64/usr/bin/core_perl/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ar-14.3"
+      - "arm-none-eabi-gcc-ar-14"
+      - "arm-none-eabi-gcc-ar14"
+      - "arm-none-eabi-gcc-ar"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.3"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ranlib-14.3"
+      - "arm-none-eabi-gcc-ranlib-14"
+      - "arm-none-eabi-gcc-ranlib14"
+      - "arm-none-eabi-gcc-ranlib"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/msys64/ucrt64/share/cmake/Modules/"
+    found: "C:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-g++.exe 
+      Build flags: -mcpu=cortex-m4;-mthumb;-mfpu=fpv4-sp-d16;-mfloat-abi=hard
+      Id flags:  
+      
+      The output was:
+      1
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-exit.o): in function `exit':
+      (.text.exit+0x14): undefined reference to `_exit'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_exit): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-exit.o)
+      (.text.exit+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-closer.o): in function `_close_r':
+      (.text._close_r+0xc): undefined reference to `_close'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_close): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-closer.o)
+      (.text._close_r+0xc): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      (.text._lseek_r+0x14): undefined reference to `_lseek'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_lseek): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-lseekr.o)
+      (.text._lseek_r+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-readr.o): in function `_read_r':
+      (.text._read_r+0x14): undefined reference to `_read'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_read): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-readr.o)
+      (.text._read_r+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-writer.o): in function `_write_r':
+      (.text._write_r+0x14): undefined reference to `_write'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_write): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-writer.o)
+      (.text._write_r+0x14): dangerous relocation: unsupported relocation
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
+      (.text._sbrk_r+0xc): undefined reference to `_sbrk'
+      C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/ld.exe: (_sbrk): Unknown destination type (ARM/Thumb) in C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\\libc.a(libc_a-sbrkr.o)
+      (.text._sbrk_r+0xc): dangerous relocation: unsupported relocation
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/msys64/ucrt64/share/cmake/Modules/"
+    found: "C:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-g++.exe 
+      Build flags: -mcpu=cortex-m4;-mthumb;-mfpu=fpv4-sp-d16;-mfloat-abi=hard
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/4.3.2/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ar-14.3"
+      - "arm-none-eabi-gcc-ar-14"
+      - "arm-none-eabi-gcc-ar14"
+      - "arm-none-eabi-gcc-ar"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.3"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.3"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.3.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.3.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.3"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ranlib-14.3"
+      - "arm-none-eabi-gcc-ranlib-14"
+      - "arm-none-eabi-gcc-ranlib14"
+      - "arm-none-eabi-gcc-ranlib"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.3.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.3.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.3"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib14"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib14"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib14.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib14.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib14"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake:1296 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:170 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      arm-none-eabi-gcc.exe (GNU Tools for STM32 14.3.rel1.20251027-0700) 14.3.1 20250623
+      Copyright (C) 2024 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:268 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_ASM_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ar-"
+      - "arm-none-eabi-gcc-ar-"
+      - "arm-none-eabi-gcc-ar"
+      - "arm-none-eabi-gcc-ar"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ar-"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ar-"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:268 (include)"
+      - "CMakeLists.txt:13 (project)"
+    mode: "program"
+    variable: "CMAKE_ASM_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ranlib-"
+      - "arm-none-eabi-gcc-ranlib-"
+      - "arm-none-eabi-gcc-ranlib"
+      - "arm-none-eabi-gcc-ranlib"
+    candidate_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/msys64/usr/local/bin/"
+      - "C:/msys64/usr/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/msys64/usr/bin/site_perl/"
+      - "C:/msys64/usr/bin/vendor_perl/"
+      - "C:/msys64/usr/bin/core_perl/"
+    searched_directories:
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/ucrt64/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/local/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/site_perl/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/vendor_perl/arm-none-eabi-gcc-ranlib-"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/msys64/usr/bin/core_perl/arm-none-eabi-gcc-ranlib-"
+      - "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib.com"
+    found: "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\msys64\\usr\\local\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\msys64\\usr\\bin"
+        - "C:\\Windows\\System32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\msys64\\usr\\bin\\site_perl"
+        - "C:\\msys64\\usr\\bin\\vendor_perl"
+        - "C:\\msys64\\usr\\bin\\core_perl"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-5j03j9"
+      binary: "C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-5j03j9"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-5j03j9'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_4aadc
+        [1/2] C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-gcc.exe   -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard    -v -o CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj -c C:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-gcc.exe
+        Target: arm-none-eabi
+        Configured with: /build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/src/gcc/configure --build=x86_64-linux-gnu --host=x86_64-w64-mingw32 --target=arm-none-eabi --prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw --libexecdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib --infodir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/info --mandir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/man --htmldir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/html --pdfdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/pdf --enable-languages=c,c++ --enable-mingw-wildcard --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-headers=yes --with-newlib --with-python-dir=share/gcc-arm-none-eabi --with-sysroot=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/arm-none-eabi --with-libiconv-prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-gmp=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpfr=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpc=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-isl=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='GNU Tools for STM32 14.3.rel1.20251027-0700' --with-multilib-list=rmprofile,aprofile
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 14.3.1 20250623 (GNU Tools for STM32 14.3.rel1.20251027-0700) 
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_4aadc.dir/'
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/cc1.exe -quiet -v -imultilib thumb/v7e-m+fp/hard -iprefix C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/ -isysroot C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi -D__USES_INITFINI__ C:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4aadc.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -version -o C:\\msys64\\tmp\\ccIp3Yj6.s
+        GNU C17 (GNU Tools for STM32 14.3.rel1.20251027-0700) version 14.3.1 20250623 (arm-none-eabi)
+        	compiled by GNU C version 7.3-win32 20180312, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib/gcc/arm-none-eabi/14.3.1/../../../../include"
+        ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/usr/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include-fixed
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include
+        End of search list.
+        Compiler executable checksum: 6ff0de7787db02762f469a6076f3ba78
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_4aadc.dir/'
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -o CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj C:\\msys64\\tmp\\ccIp3Yj6.s
+        GNU assembler version 2.44.0 (arm-none-eabi) using BFD version (GNU Tools for STM32 14.3.rel1.20251027-0700) 2.44.0.20250616
+        COMPILER_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/
+        LIBRARY_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7e-m+fp/hard/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/thumb/v7e-m+fp/hard/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.'
+        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f libcmTC_4aadc.a && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ar.exe qc libcmTC_4aadc.a  CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ranlib.exe libcmTC_4aadc.a && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+        end of search list found
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include-fixed] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include]
+        implicit include dirs: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include-fixed;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: 'C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-5j03j9']
+        ignore line: []
+        ignore line: [Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_4aadc]
+        ignore line: [[1/2] C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-gcc.exe   -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard    -v -o CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj -c C:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-gcc.exe]
+        ignore line: [Target: arm-none-eabi]
+        ignore line: [Configured with: /build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/src/gcc/configure --build=x86_64-linux-gnu --host=x86_64-w64-mingw32 --target=arm-none-eabi --prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw --libexecdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib --infodir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/info --mandir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/man --htmldir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/html --pdfdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/pdf --enable-languages=c,c++ --enable-mingw-wildcard --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-headers=yes --with-newlib --with-python-dir=share/gcc-arm-none-eabi --with-sysroot=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/arm-none-eabi --with-libiconv-prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-gmp=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpfr=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpc=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-isl=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='GNU Tools for STM32 14.3.rel1.20251027-0700' --with-multilib-list=rmprofile,aprofile]
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 14.3.1 20250623 (GNU Tools for STM32 14.3.rel1.20251027-0700) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_4aadc.dir/']
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/cc1.exe -quiet -v -imultilib thumb/v7e-m+fp/hard -iprefix C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/ -isysroot C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi -D__USES_INITFINI__ C:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4aadc.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -version -o C:\\msys64\\tmp\\ccIp3Yj6.s]
+        ignore line: [GNU C17 (GNU Tools for STM32 14.3.rel1.20251027-0700) version 14.3.1 20250623 (arm-none-eabi)]
+        ignore line: [	compiled by GNU C version 7.3-win32 20180312  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib/gcc/arm-none-eabi/14.3.1/../../../../include"]
+        ignore line: [ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/usr/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 6ff0de7787db02762f469a6076f3ba78]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_4aadc.dir/']
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -o CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj C:\\msys64\\tmp\\ccIp3Yj6.s]
+        ignore line: [GNU assembler version 2.44.0 (arm-none-eabi) using BFD version (GNU Tools for STM32 14.3.rel1.20251027-0700) 2.44.0.20250616]
+        ignore line: [COMPILER_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/]
+        ignore line: [LIBRARY_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7e-m+fp/hard/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/thumb/v7e-m+fp/hard/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.']
+        ignore line: [[2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f libcmTC_4aadc.a && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ar.exe qc libcmTC_4aadc.a  CMakeFiles/cmTC_4aadc.dir/CMakeCCompilerABI.c.obj && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ranlib.exe libcmTC_4aadc.a && cd ."]
+        ignore line: []
+        ignore line: []
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-hqyuwq"
+      binary: "C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-hqyuwq"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-hqyuwq'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_746c6
+        [1/2] C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-g++.exe   -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard    -v -o CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj -c C:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-g++.exe
+        Target: arm-none-eabi
+        Configured with: /build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/src/gcc/configure --build=x86_64-linux-gnu --host=x86_64-w64-mingw32 --target=arm-none-eabi --prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw --libexecdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib --infodir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/info --mandir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/man --htmldir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/html --pdfdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/pdf --enable-languages=c,c++ --enable-mingw-wildcard --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-headers=yes --with-newlib --with-python-dir=share/gcc-arm-none-eabi --with-sysroot=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/arm-none-eabi --with-libiconv-prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-gmp=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpfr=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpc=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-isl=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='GNU Tools for STM32 14.3.rel1.20251027-0700' --with-multilib-list=rmprofile,aprofile
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 14.3.1 20250623 (GNU Tools for STM32 14.3.rel1.20251027-0700) 
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_746c6.dir/'
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/cc1plus.exe -quiet -v -imultilib thumb/v7e-m+fp/hard -iprefix C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/ -isysroot C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi -D__USES_INITFINI__ C:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_746c6.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -version -o C:\\msys64\\tmp\\ccGZVRmo.s
+        GNU C++17 (GNU Tools for STM32 14.3.rel1.20251027-0700) version 14.3.1 20250623 (arm-none-eabi)
+        	compiled by GNU C version 7.3-win32 20180312, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard"
+        ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib/gcc/arm-none-eabi/14.3.1/../../../../include"
+        ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/usr/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include-fixed
+         C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include
+        End of search list.
+        Compiler executable checksum: 43d99ff7460098f9cee06aa2d6324907
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_746c6.dir/'
+         C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -o CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj C:\\msys64\\tmp\\ccGZVRmo.s
+        GNU assembler version 2.44.0 (arm-none-eabi) using BFD version (GNU Tools for STM32 14.3.rel1.20251027-0700) 2.44.0.20250616
+        COMPILER_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/
+        LIBRARY_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7e-m+fp/hard/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/thumb/v7e-m+fp/hard/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.'
+        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f libcmTC_746c6.a && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ar.exe qc libcmTC_746c6.a  CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ranlib.exe libcmTC_746c6.a && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+          add: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+        end of search list found
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/backward]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/include-fixed] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/backward]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        collapse include dir [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include] ==> [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include]
+        implicit include dirs: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/backward;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/arm-none-eabi/14.3.1/include-fixed;C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/arm-none-eabi/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: 'C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/CMakeScratch/TryCompile-hqyuwq']
+        ignore line: []
+        ignore line: [Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_746c6]
+        ignore line: [[1/2] C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-g++.exe   -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard    -v -o CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj -c C:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-g++.exe]
+        ignore line: [Target: arm-none-eabi]
+        ignore line: [Configured with: /build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/src/gcc/configure --build=x86_64-linux-gnu --host=x86_64-w64-mingw32 --target=arm-none-eabi --prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw --libexecdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib --infodir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/info --mandir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/man --htmldir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/html --pdfdir=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/share/doc/gcc-arm-none-eabi/pdf --enable-languages=c,c++ --enable-mingw-wildcard --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-headers=yes --with-newlib --with-python-dir=share/gcc-arm-none-eabi --with-sysroot=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/arm-none-eabi --with-libiconv-prefix=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-gmp=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpfr=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-mpc=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-isl=/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/build-mingw/host-libs/usr --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='GNU Tools for STM32 14.3.rel1.20251027-0700' --with-multilib-list=rmprofile,aprofile]
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 14.3.1 20250623 (GNU Tools for STM32 14.3.rel1.20251027-0700) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_746c6.dir/']
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/cc1plus.exe -quiet -v -imultilib thumb/v7e-m+fp/hard -iprefix C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/ -isysroot C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi -D__USES_INITFINI__ C:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_746c6.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mlibarch=armv7e-m+fp -march=armv7e-m+fp -version -o C:\\msys64\\tmp\\ccGZVRmo.s]
+        ignore line: [GNU C++17 (GNU Tools for STM32 14.3.rel1.20251027-0700) version 14.3.1 20250623 (arm-none-eabi)]
+        ignore line: [	compiled by GNU C version 7.3-win32 20180312  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard"]
+        ignore line: [ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/build/gnu-tools-for-stm32_14.3.rel1.20251027-0700/install-mingw/lib/gcc/arm-none-eabi/14.3.1/../../../../include"]
+        ignore line: [ignoring nonexistent directory "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../arm-none-eabi/usr/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        ignore line: [ C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include/c++/14.3.1/backward]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/include-fixed]
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/lib/gcc/../../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 43d99ff7460098f9cee06aa2d6324907]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_746c6.dir/']
+        ignore line: [ C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv7e-m+fp -mfloat-abi=hard -mfpu=fpv4-sp-d16 -meabi=5 -o CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj C:\\msys64\\tmp\\ccGZVRmo.s]
+        ignore line: [GNU assembler version 2.44.0 (arm-none-eabi) using BFD version (GNU Tools for STM32 14.3.rel1.20251027-0700) 2.44.0.20250616]
+        ignore line: [COMPILER_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/bin/]
+        ignore line: [LIBRARY_PATH=C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7e-m+fp/hard/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/thumb/v7e-m+fp/hard/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/]
+        ignore line: [C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/../arm-none-eabi/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m4' '-mthumb' '-mfpu=fpv4-sp-d16' '-mfloat-abi=hard' '-v' '-o' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlibarch=armv7e-m+fp' '-march=armv7e-m+fp' '-dumpdir' 'CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [[2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f libcmTC_746c6.a && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ar.exe qc libcmTC_746c6.a  CMakeFiles/cmTC_746c6.dir/CMakeCXXCompilerABI.cpp.obj && C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin\\arm-none-eabi-ranlib.exe libcmTC_746c6.a && cd ."]
+        ignore line: []
+        ignore line: []
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+...

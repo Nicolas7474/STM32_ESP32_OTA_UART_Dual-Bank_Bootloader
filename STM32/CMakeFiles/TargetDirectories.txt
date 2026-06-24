@@ -1,0 +1,12 @@
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/flash.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/edit_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/CMakeFiles/rebuild_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/common/CMakeFiles/common_drivers.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/common/CMakeFiles/edit_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/common/CMakeFiles/rebuild_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/bootloader/CMakeFiles/bootloader.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/bootloader/CMakeFiles/edit_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/bootloader/CMakeFiles/rebuild_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/application/CMakeFiles/application.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/application/CMakeFiles/edit_cache.dir
+C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/application/CMakeFiles/rebuild_cache.dir

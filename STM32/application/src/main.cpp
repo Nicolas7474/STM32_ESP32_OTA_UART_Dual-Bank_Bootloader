@@ -120,7 +120,7 @@ int main() {
 	BareM_StatusTypeDef res3 = uart3.init(115200);
 	while(res3 != Bare_OK);
 
-	BareM_StatusTypeDef res6 = uart6.init(115200);
+	BareM_StatusTypeDef res6 = uart6.init(1500000); // 1.5 Mbps
 	while(res6 != Bare_OK);
 
 	uart6.startReceiveToIdle_DMA(buffer_Rx);
@@ -202,9 +202,9 @@ extern "C"  // Prevent C++ name mangling so the Assembly vector table can find t
 void EXTI0_IRQHandler() {
 	if (EXTI->PR & (1<<0)) {  // button pushed : if the PA0 triggered the interrupt
 		EXTI->PR = (1<<0);  // Clear the interrupt flag by writing a 1
-		//write_0xA();
+
 		uint32_t current_tick = GetSysTick();
-		// Only register the press if 150ms have passed since the last valid press
+		// Only register the press if 300ms have passed since the last valid press
 		if ((current_tick - last_debounce_tick) > 300) {
 			GPIOD->ODR ^= GPIO_ODR_OD4; //toggle orange
 			uart6.UART_Transmit(std::array<uint8_t, 1>{CMD_CHECK_UPDATE_REQ}, 200); // Modern C++ array literal (clean single-liner)

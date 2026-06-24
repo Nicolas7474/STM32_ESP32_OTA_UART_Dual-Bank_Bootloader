@@ -59,6 +59,7 @@ constexpr uint8_t NAK_MAGIC_MISSING     = 0x18; // Metadata anchor verification 
 constexpr uint8_t ERR_FLASH_ERASE       = 0xE1; // Flash erase routine hardware fault
 constexpr uint8_t ERR_FLASH_WRITE       = 0xE2; // Flash program routine hardware fault
 constexpr uint8_t CMD_REQ_UPDATE_SERVER = 0x28;  // STM32 -> ESP32: "You can update the new FW"
+constexpr uint8_t WAIT_BYTE             = 0x19;
 
 // Explicit constants for our boot tracking state machine
 constexpr uint8_t STATE_RUN_BANK1      = 1;
@@ -126,6 +127,7 @@ uint8_t payload_buffer[512]; // Matches our max expected packet size
 uint32_t incoming_crc = 0;
 uint32_t bytes_read = 0;
 constexpr uint32_t INACTIVITY_TIMEOUT_MS = 4000; // 4 seconds of silence = abort
+volatile uint32_t last_debounce_tick = 0;
 
 std::array<uint8_t, 1024> buffer_rx{}; // Sized to 1024 to easily hold a full 512-byte payload packet + protocol framing
 
@@ -326,22 +328,23 @@ static bool program_packet_to_flash(uint32_t start_address, std::span<const uint
 //===================================================================
 
 void execute_flash_and_respond() {
-    // 1. Run local CRC32 validation (STM32 CRC hardware was not working)
+    // 1. Packet Integrity Check via software CRC32 validation
     uint32_t computed_crc = CRC32_compute(payload_buffer, header.payload_length);
 
     if (computed_crc != incoming_crc) {
-    	uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 500); // The ESP32 will retry sending the packet
+        // Signal NAK; allows the ESP32 to retry sending this specific payload block
+    	uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 500);
         return;
     }
 
-    // 2. Reset tracking fields cleanly if this is the absolute beginning of a transfer
-    if (header.packet_id == 1) {							// first packet
-    	tot_fw_bytes_written = 0; // Reset tracking counter (robustness: avoid accumulating values if transfer has crashed)
-    	expected_firmware_crc = header.total_crc; // Capture the total_crc token once at the start
+    // 2. Transaction Initialization (Executes only upon receiving the initial payload block)
+    if (header.packet_id == 1) {
+    	tot_fw_bytes_written = 0; // Reset counter to prevent accumulation from previous failed attempts
+    	expected_firmware_crc = header.total_crc; // Cache the global firmware CRC validation token
     	uint8_t active_bank = get_active_bank_choice();
-    	// If we are currently in a forced update state, find out what the underlying active bank was
+
+    	// If stuck in a forced update state, step backward through Sector 13 to resolve the last valid active bank
     	if (active_bank == STATE_FORCE_UPDATE) {
-    		// Find the first 0xFF slot again to step back 2 bytes total
     		uint32_t address = SECTOR13_START;
     		while (address < SECTOR13_END) {
     			if (*reinterpret_cast<volatile uint8_t*>(address) == 0xFF) {
@@ -350,21 +353,21 @@ void execute_flash_and_respond() {
     			address++;
     		}
 
-    		// Step back 2 bytes (past the 0x0A) to get the true active bank
+    		// Step back past the current state token to retrieve the historical active bank identifier
     		if (address >= (SECTOR13_START + 2)) {
     			active_bank = *reinterpret_cast<volatile uint8_t*>(address - 2);
     		} else {
-    			active_bank = STATE_RUN_BANK1; // Ultimate fallback
+    			active_bank = STATE_RUN_BANK1; // Ultimate hardware fallback
     		}
     	}
 
-    	// Now assign the targets reliably
+    	// Assign target bank destination to the opposing inactive side (Dual-Bank execution swap topology)
     	if (active_bank == STATE_RUN_BANK2) {
     		target_bank_start_address = BANK1_APP_START_ADDR;
-    		target_is_bank2 = false; // Bank 2 is active, target Bank 1
+    		target_is_bank2 = false;
     	} else {
     		target_bank_start_address = BANK2_APP_START_ADDR;
-    		target_is_bank2 = true;  // Bank 1 is active (or default), target Bank 2
+    		target_is_bank2 = true;
     	}
 
     	current_flash_address = target_bank_start_address;
@@ -376,146 +379,139 @@ void execute_flash_and_respond() {
     uint8_t target_sector = 0;
     bool sector_found = false;
 
-    // 3.2. Scan our lookup table to find which exact sector contains our ending byte
-    // Choose the correct sector lookup table based on our target bank
+    // Scan the designated bank sector table in reverse order to resolve the target physical boundary
     if (target_is_bank2) {
-    	// Search backwards from the highest sector to the lowest
     	for (int i = static_cast<int>(bank2_sectors.size()) - 1; i >= 0; --i) {
     		if (packet_end_address >= bank2_sectors[i].start_address) {
     			target_sector = bank2_sectors[i].sector_number;
     			sector_found = true;
-    			break; // Stop immediately! We found the highest matching boundary.
+    			break;
     		}
     	}
-    	// Safeguard: Protect Sector 12 and 13 (the EEPROM storage space) from being overwritten by an app update
+    	// Hard Safeguard: Deny application updates from dropping into Sectors 12 & 13 (EEPROM non-volatile configs)
     	if (sector_found && target_sector <= 13) {
     		sector_found = false;
     	}
     } else {
-    	// Search backwards from the highest sector to the lowest
     	for (int i = static_cast<int>(bank1_sectors.size()) - 1; i >= 0; --i) {
     		if (packet_end_address >= bank1_sectors[i].start_address) {
     			target_sector = bank1_sectors[i].sector_number;
     			sector_found = true;
-    			break; // Stop immediately! We found the highest matching boundary.
+    			break;
     		}
     	}
+        // Hard Safeguard: Avoid overwriting Sector 0 & 1 containing the running bootloader code
     	if (sector_found && target_sector <= 1) {
-    		sector_found = false; // Redundant safeguard forcing to false, refusing to erase or write
+    		sector_found = false;
     	}
     }
-    flash_unlock();  // Always unlock flash right before any Erase or Write
 
-    // 3.3 If we successfully mapped the address to a sector, check our erasure tracker
+    flash_unlock();  // Gain peripheral access right before interacting with memory controllers
+
+    // Execute safe on-the-fly erasure only when stepping into a fresh un-erased physical sector block
     if (sector_found) {
-    	// For Bank 1, sectors go 2 to 11. For Bank 2, they go 12 to 23.
-    	// This condition still holds true as long as we process sequentially upward.
     	if (static_cast<int16_t>(target_sector) > last_erased_sector) {
-    		// Attempt physical erasure and verify success
+    		// ! Delay guaranteed on 1st packet ! Minimum erase time > 300ms !
+    		uart6.UART_Transmit(std::span<const uint8_t>(&WAIT_BYTE, 1), 100); // Inform the ESP32 it must adjust its listening timeout
     		if (!flash_erase_sector(target_sector)) {
-    			// HARDWARE ERASE FAULT: Stop everything!
-    			flash_lock();
+    			flash_lock(); // Hardware failure: Immediately secure controller registers and abort
     			uart6.UART_Transmit(std::span<const uint8_t>(&ERR_FLASH_ERASE, 1), 500);
-    			return; // Break out of execution early to prevent programming un-erased memory
+    			return;
     		}
     		last_erased_sector = static_cast<int16_t>(target_sector);
     	}
     }
-    // Finally write the new firmware to the Flash
+
+    // 4. Commit current payload block into Flash memory
     std::span<const uint8_t> payload_span(payload_buffer, header.payload_length);
     if (program_packet_to_flash(current_flash_address, payload_span)) {
-    	current_flash_address += header.payload_length;  		// Advance the flash pointer forward by the actual bytes written
-    	tot_fw_bytes_written += header.payload_length;  // Track the total written progress
+    	current_flash_address += header.payload_length;
+    	tot_fw_bytes_written += header.payload_length;
 
-    	// Check if this was the absolute last packet of the file
+    	// 5. Finalize firmware download transaction upon full data reception
     	if (tot_fw_bytes_written >= header.total_size) {
 
-    		// Cast the target bank offset directly (both uint32_t variables) to the struct type
-    		const auto* flashed_meta = reinterpret_cast<const FirmwareMetadata*>(target_bank_start_address + 0x200U); // Origin 0x200 defined in the linker
-    		// Check the .fw_metadata section if the hard-coded version in the application.bin file we have just written
-    		// corresponds to the version wrapped in the header with each of the 512 bytes chunks.
+    		// Retrieve application compiled metadata layout from explicit linker script memory offset (0x200)
+    		const auto* flashed_meta = reinterpret_cast<const FirmwareMetadata*>(target_bank_start_address + 0x200U);
+
+    		// Verify the binary validation anchor token ("VERS") to prevent uncompiled raw crashes
     		if (flashed_meta->magic_anchor != 0x56455253) {
-    			// First safety check: Verify the Magic Anchor token ("VERS" = 0x56455253)
     			char err_buf[64];
     			snprintf(err_buf, sizeof(err_buf), "\r\n[ERR] Metadata Magic anchor missing! Found: %08lX\r\n", flashed_meta->magic_anchor);
     			uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(err_buf), strlen(err_buf)}, 500);
-    			flash_lock(); // Abort and signal failure
+    			flash_lock();
     			tot_fw_bytes_written = 0;
-    			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
-    			transfer_in_progress = false; // No need to reboot endlessly every 4sec if the magic key is missing !
+    			ms_since_last_packet = 0;
+    			transfer_in_progress = false; // No need to reboot to retry after a 4sec delay if the magic key is not present
     			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_MAGIC_MISSING, 1), 500);
     			return;
     		}
-    		uint16_t expected_major = header.version_major; // major version from the json manifest
+    		uint16_t expected_major = header.version_major;
     		uint16_t expected_minor = header.version_minor;
 
-    		/*char ver_buf[64]; // For debugging, print what the binary actually says inside its code space
-    		int ver_len = snprintf(ver_buf, sizeof(ver_buf),
-    				"\r\n[META CHECK] Binary Version Verified: v%d.%d\r\n", flashed_meta->version_major, flashed_meta->version_minor);
-    		uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(ver_buf), static_cast<size_t>(ver_len)}, 500);*/
-
+    		// Validate compile-time version metadata properties against host manifest attributes
     		if (flashed_meta->version_major != expected_major || flashed_meta->version_minor != expected_minor) {
     			constexpr std::string_view mismatch_msg = "[ERR] Manifest version mismatch with compilation version!\r\n";
     			uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(mismatch_msg.data()), mismatch_msg.size()}, 500);
-    			flash_lock(); // Abort and signal failure
+    			flash_lock();
     			tot_fw_bytes_written = 0;
-    			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
-    			transfer_in_progress = false; // No need to reboot endlessly every 4sec if the versions are not matched !
+    			ms_since_last_packet = 0;
+    			transfer_in_progress = false; // No need to reboot to retry after a 4sec delay if the version is mismatched
     			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_VERSION_MISMATCH, 1), 500);
     			return;
     		}
-    		// Compute CRC over the entire physical flashed binary space
+
+    		// Verify the entire flashed binary against the expected CRC from the header
     		uint32_t physical_flash_crc = CRC32_compute(reinterpret_cast<const uint8_t*>(target_bank_start_address), header.total_size);
 
     		if (physical_flash_crc == expected_firmware_crc) {
-    			// The update is 100% complete, written and verified. Now it is safe to change the boot choice
+    			// After last check, image completely validated
     			uint8_t bank_choice = (target_is_bank2) ? 0x02 : 0x01;
-    			record_new_bank_state(bank_choice); // update the new bank number the app will run onto
-    			flash_lock();
-    			tot_fw_bytes_written = 0; // Reset counter for the next future update session
-    			transfer_in_progress = false;
-    			uart6.UART_Transmit(std::span<const uint8_t>(&ACK_BYTE, 1), 500);
-    			constexpr std::string_view msg = "New application FW flashed successfully, STM32 will reboot now."; // Debug purposes
-    			uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
-    			// Clean the hardware pipeline before leaving
-    			//while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial ? if used, wait for DMA Stream to turn off
-    			while ((USART3->SR & USART_SR_TC) == 0 || (USART6->SR & USART_SR_TC) == 0);  // Wait for USART Transmission Complete (TC) flag
-    			__disable_irq(); // Nothing can interrupt the reboot
-    			NVIC_SystemReset(); // Reboot
-    		} else {
-    			// Do NOT write the new bank state to Sector 13.
+    			// It will be safe to switch execution configuration mapping in Sector 13
+    			record_new_bank_state(bank_choice);
     			flash_lock();
     			tot_fw_bytes_written = 0;
-    			ms_since_last_packet = 0;    // Reset timer to give the user a fresh 4 seconds to push a fix
-    			transfer_in_progress = false; // No need to reboot endlessly every 4sec if the CRC don't match !
-    			// Blast back a NAK or an explicit ERR_BYTE so Python flags a flashing failure
-    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 2);
+    			transfer_in_progress = false;
+    			uart6.UART_Transmit(std::span<const uint8_t>(&ACK_BYTE, 1), 500); // Send final ACK byte
+
+                constexpr std::string_view msg = "New application FW flashed successfully, STM32 will reboot now.";
+    			uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
+
+    			// Wait until peripheral transmission shift registers fully clear to avoid truncated UART lines
+    			while ((USART3->SR & USART_SR_TC) == 0 || (USART6->SR & USART_SR_TC) == 0);
+    			__disable_irq();     // Close execution interrupts prior to reset sequence
+    			NVIC_SystemReset();  // Execute system reset to boot application image
+    		} else {
+    			// Comprehensive CRC evaluation failed; maintain safe bootloader status loop to prevent booting corrupted images
+    			flash_lock();
+    			tot_fw_bytes_written = 0;
+    			ms_since_last_packet = 0;
+    			transfer_in_progress = false;  // No need to reboot to retry after a 4sec delay if the CRC don't match
+    			uart6.UART_Transmit(std::span<const uint8_t>(&NAK_CRC_ERROR, 1), 2); // send byte CRC error
     			return;
     		}
     	} else {
-    		// INTERMEDIATE PACKET HANDLING (Still downloading chunks)
-    		// If the transfer is interrupted, the 0x0A (force update) flag stays active in Sector 13, meaning if the board reboots,
-    		// it safely stays in the bootloader waiting for you to restart sending the FW instead of jumping into a corrupted application
-    		uart6.UART_Transmit(std::span<const uint8_t>(&ACK_BYTE, 1), 500); // Send ACK (0x06) to pull the next chunk from the ESP32
+    		// Continuous multi-packet data streams receive sequential block ACKs to prompt next chunk transfers
+    		uart6.UART_Transmit(std::span<const uint8_t>(&ACK_BYTE, 1), 500);
     	}
     } else {
-    	// Hardware fault during programming
+    	// Non-volatile memory flash write peripheral driver failure detected
     	uart6.UART_Transmit(std::span<const uint8_t>(&ERR_FLASH_WRITE, 1), 500);
-    	//constexpr std::string_view msg = "Hardware fault during programming"; // Debug purposes
-    	// uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
     }
 }
 
 static void ParseIncomingStream(std::span<const uint8_t> incoming_chunk) {
 	if (incoming_chunk.empty()) return;
 
+	// Process incoming byte stream sequentially through a state-machine parser
 	for (uint8_t byte : incoming_chunk) {
 
 		switch (current_state) {
 		case State::IDLE_START: {
+			// Wait for a valid packet sync byte to begin parsing
 			if (byte == PACKET_START_BYTE) {
 				bytes_read = 0;
-				transfer_in_progress = true; // Mark that we are alive
+				transfer_in_progress = true; // Mark that the update is alive
 				ms_since_last_packet = 0;    // Reset inactivity countdown
 				current_state = State::READ_HEADER;
 			}
@@ -526,6 +522,7 @@ static void ParseIncomingStream(std::span<const uint8_t> incoming_chunk) {
 			static uint8_t header_raw[16];
 			header_raw[bytes_read++] = byte;
 
+			// Once the fixed 16-byte header is buffered, decode fields from Big-Endian
 			if (bytes_read == 16) {
 				header.total_size	 =  ((uint32_t)header_raw[0] << 24) | 	 // Decode total_size (Big-Endian)
 										((uint32_t)header_raw[1] << 16) |
@@ -554,6 +551,7 @@ static void ParseIncomingStream(std::span<const uint8_t> incoming_chunk) {
         case State::READ_DATA: {
         	payload_buffer[bytes_read++] = byte;
 
+        	// Advance once the variable-length payload dictates we have captured the full chunk
         	if (bytes_read == header.payload_length) {
         		bytes_read = 0;
         		current_state = State::READ_CRC;
@@ -565,11 +563,12 @@ static void ParseIncomingStream(std::span<const uint8_t> incoming_chunk) {
         	static uint8_t crc_raw[4];
         	crc_raw[bytes_read++] = byte;
 
+        	// Decode packet-level CRC and finalize block transaction
         	if (bytes_read == 4) {
         		incoming_crc = ((uint32_t)crc_raw[0] << 24) |
-        				((uint32_t)crc_raw[1] << 16) |
-						((uint32_t)crc_raw[2] << 8)  |
-						crc_raw[3];
+        					   ((uint32_t)crc_raw[1] << 16) |
+							   ((uint32_t)crc_raw[2] << 8)  |
+							   crc_raw[3];
 
         		execute_flash_and_respond();  // Process the flash operations immediatly
         		bytes_read = 0;
@@ -581,39 +580,49 @@ static void ParseIncomingStream(std::span<const uint8_t> incoming_chunk) {
     }
 }
 
-
 // ============================================================================
 // CPU HANDOVER & ARCHITECTURAL JUMP SEQUENCER
 // ============================================================================
-// Force this function to run entirely out of RAM
+
+// Force this function to run entirely out of RAM, prevent a CPU HardFault crash when flipping UFB_MODE,
+// as modifying active Flash banks mid-execution would shift code addresses directly beneath the active instruction pipeline
 __attribute__((section(".RamFunc"), noinline))
 static void jump_to_application(uint32_t target_app_addr) {
 
-    // 1. CLEAN HARDWARE DE-INITIALIZATION
+    // PHASE 1: CORE HARDWARE DE-INITIALIZATION
     // Forcefully disable the global interrupts at the core level first
     __disable_irq();
+
     // Disable SysTick completely and clear its pending exception state
     SysTick->CTRL = 0;
     SysTick->VAL  = 0;
     SCB->ICSR |= SCB_ICSR_PENDSTCLR_Msk;
-    // Stop and clear UART3 + DMA configuration registers
-    // (Adjust these register resets to match your custom driver teardown)
+
+    // Stop and clear UART3 + UART6 configuration registers
     USART3->CR1 &= ~USART_CR1_UE;  // Disable USART3 globally
     USART3->CR3 &= ~(USART_CR3_DMAR | USART_CR3_DMAT); // Sever DMA linkages
+    USART6->CR1 &= ~USART_CR1_UE;  // Disable USART6 globally
+    USART6->CR3 &= ~(USART_CR3_DMAR | USART_CR3_DMAT); // Sever DMA linkages from firmware stream
+
     // Force clear the specific NVIC Enable and Pending registers used
     NVIC_DisableIRQ(RTC_WKUP_IRQn);
     NVIC_ClearPendingIRQ(RTC_WKUP_IRQn);
-    // If UART3 interrupts were mapped:
+
     NVIC_DisableIRQ(USART3_IRQn);
     NVIC_ClearPendingIRQ(USART3_IRQn);
-    // Optional but safest bare-metal approach: Reset peripheral clocks completely
-    // This forces the hardware modules back to their factory reset state
+    NVIC_DisableIRQ(USART6_IRQn);
+    NVIC_ClearPendingIRQ(USART6_IRQn);
+
+    // Reset peripheral clocks completely to force hardware modules back to factory states
     RCC->APB1RSTR |= RCC_APB1RSTR_USART3RST;
     RCC->APB1RSTR &= ~RCC_APB1RSTR_USART3RST;
+    RCC->APB2RSTR |= RCC_APB2RSTR_USART6RST;
+    RCC->APB2RSTR &= ~RCC_APB2RSTR_USART6RST;
 
-    // 2. HARDWARE SWAP AND EXECUTION HANDOFF
+    // PHASE 2: HARDWARE SWAP AND EXECUTION HANDOFF
     uint8_t active_bank = get_active_bank_choice();
 
+    // Swap physical mapping of Flash Bank 1 and Bank 2.
     if (active_bank == 2) {
         SYSCFG->MEMRMP |= SYSCFG_MEMRMP_UFB_MODE;
     } else {
@@ -622,17 +631,28 @@ static void jump_to_application(uint32_t target_app_addr) {
     __DSB();
     __ISB();
 
+    // Read the first 32-bit word from the application's binary vector table. This contains the initial safe stack
+    // pointer (RAM ceiling) of the bank we will switch onto (because of target_app_addr) calculated by the linker
     uint32_t app_stack_pointer = *reinterpret_cast<volatile uint32_t*>(target_app_addr);
+
+    // jump_address value is the absolute address where the application's first instruction of the target bank is physically located in Flash.
+    // Ex: Once the linker places all the compiled functions into the Flash space and determines that Reset_Handler is located exactly at 0x0800814C,
+    // it goes back to the vector table at 0x08008004 (Start + 4) and writes 0x0800814C (plus 1 for Thumb mode, so 0x0800814D) into those 4 bytes.
     uint32_t jump_address      = *reinterpret_cast<volatile uint32_t*>(target_app_addr + 4);
-    jump_address |= 0x01U;
 
-    __set_MSP(app_stack_pointer);
+    // Enforce Thumb-mode state execution alignment constraint
+    jump_address |= 0x01U; // ARM Cortex-M processors only support the Thumb instruction set
 
+    // Before leaping to the new application, the CPU needs to forget the bootloader's local RAM variables and setup its execution boundary
+    __set_MSP(app_stack_pointer); // Changes the hardware's MSP register to point directly to the application’s fresh, clean RAM ceiling
+
+    // We cast jump_address (raw number) as a callable function pointer type (AppEntryFunction).
+    // When app_reset_handler() is called, the CPU updates its internal Program Counter (PC) register to your new application's address.
     AppEntryFunction app_reset_handler = reinterpret_cast<AppEntryFunction>(jump_address);
-    app_reset_handler();
+    app_reset_handler(); // with: typedef void (*AppEntryFunction)(void);
 }
 
-// function just in case we need to force an update byte in sector 13
+// Helper function just in case we need to force an update byte in sector 13
 [[maybe_unused]] static void write_0xA() {
     uint32_t address = 0x08104000U; // Sector 13 start address
     constexpr uint32_t sector_boundary = 0x08107FFCU;
@@ -681,60 +701,73 @@ static void GPIO__Interrupt() {
     NVIC_SetPriority(EXTI0_IRQn, 2); // Set lower priority than critical UART/DMA
     NVIC_EnableIRQ(EXTI0_IRQn);
 }
-//===================================================================
+
+
 // =================== MAIN () ======================================
-//===================================================================
+
 int main() {
-	// 1. Core hardware initialization
-	SysClockConfig(); //
-	SysTick_Init();   //
-	GPIO_Config();  //
-	GPIOG->ODR ^= GPIO_ODR_OD6; // disable green led
-	GPIOD->ODR ^= GPIO_ODR_OD5;  // disable rouge
 
-	//write_0xA(); // reset the bootloader in "waiting for update file..." state
-	//record_new_bank_state(0x01); // manually set the application bank
-	//format_sector13_fresh(1);
-	// Fast autonomous magic check: read the absolute end of the sector. If it's not our token, reset the sector
-	if (*reinterpret_cast<volatile uint32_t*>(SECTOR13_MAGIC_ADDR) != SECTOR13_MAGIC_VAL) {
-		// The sector 13 must be initialized at 0xFF at the first use after programming
-		format_sector13_fresh(STATE_RUN_BANK1); // Force a clean format (bank x [...0xFF...0xFF...] magic_nb)
-	}
+    // PHASE 1: Core Hardware & LED Initialization
+    SysClockConfig(); //
+    SysTick_Init();   //
+    GPIO_Config();    //
 
-	uint8_t boot_state = get_active_bank_choice(); // 2. Read our persistent flash marker
+    GPIOG->ODR ^= GPIO_ODR_OD6; // disable green led
+    GPIOD->ODR ^= GPIO_ODR_OD5; // disable rouge
 
-	// 3. Condition Check: Only jump if we are NOT forcing an update!
-	if (boot_state == STATE_RUN_BANK1 || boot_state == STATE_RUN_BANK2) {
-		jump_to_application(BANK1_APP_START_ADDR);
-	}
+    //write_0xA(); // reset the bootloader in "waiting for update file..." state
+    //record_new_bank_state(0x01); // manually set the application bank
+    //format_sector13_fresh(1);
 
-	else if(boot_state == STATE_FORCE_UPDATE) {
-		GPIO__Interrupt();
-		// 4.  Wait for firmware update
-		BareM_StatusTypeDef res = uart3.init(115200);
-		while(res != Bare_OK);
-		BareM_StatusTypeDef res6 = uart6.init(115200);
-		while(res6 != Bare_OK);
+    // PHASE 2: Non-Volatile Memory Integrity Validation
+    // Fast autonomous magic check: read the absolute end of the sector. If it's not our token, reset the sector
+    if (*reinterpret_cast<volatile uint32_t*>(SECTOR13_MAGIC_ADDR) != SECTOR13_MAGIC_VAL) {
+        // The sector 13 must be initialized at 0xFF at the first use after programming
+        format_sector13_fresh(STATE_RUN_BANK1); // Force a clean format (bank x [...0xFF...0xFF...] magic_nb)
+    }
 
-		uart6.startReceiveToIdle_DMA(buffer_rx); // Starting listening to the uart byes of FW update file
-		uart6.UART_Transmit(std::span<const uint8_t>(&CMD_REQ_UPDATE_SERVER, 1), 500); // Tells the ESP32: upload and forward to me the FW file
-		constexpr std::string_view msg = "Uploading FW....";
-		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
+    uint8_t boot_state = get_active_bank_choice();
 
-		while (true) {
-			// Active watchdog check for mid-transfer abandonment
-			if (transfer_in_progress && (ms_since_last_packet > INACTIVITY_TIMEOUT_MS)) {
-				while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial: wait for DMA Stream to turn off
-				while ((USART3->SR & USART_SR_TC) == 0);  // Wait for USART Transmission Complete (TC) flag
-				__disable_irq();
-				NVIC_SystemReset(); // Purge state and reboot cleanly
-			}
+    // PHASE 3: Execution Routing Decision
+    // 3. Condition Check: Only jump if we are NOT forcing an update!
+    if (boot_state == STATE_RUN_BANK1 || boot_state == STATE_RUN_BANK2) {
+        jump_to_application(BANK1_APP_START_ADDR);
+    }
 
-			GPIOD->ODR ^= GPIO_ODR_OD4;
-			NBdelay_ms(150); // blink wait to receive the uart bytes
-		}
-		return 0;
-	}
+    // PHASE 4: Forced Firmware Update Mode
+    else if (boot_state == STATE_FORCE_UPDATE) {
+        GPIO__Interrupt();
+
+        // 4.  Wait for firmware update
+        BareM_StatusTypeDef res6 = uart6.init(1500000); // 1.5 Mbps
+        while (res6 != Bare_OK);
+        BareM_StatusTypeDef res3 = uart3.init(115200);
+        while (res3 != Bare_OK);
+
+        NBdelay_ms(5); // Settle time
+
+        uart6.startReceiveToIdle_DMA(buffer_rx); // Starting listening to the uart byes of FW update file
+        uart6.UART_Transmit(std::span<const uint8_t>(&CMD_REQ_UPDATE_SERVER, 1), 500); // Tells the ESP32: upload and forward to me the FW file
+
+        constexpr std::string_view msg = "Firmware uploading mode...";
+        uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
+
+        // PHASE 5: Active Streaming Loop & Watchdog Processing
+        while (true) {
+            // Active watchdog check for mid-transfer abandonment
+            if (transfer_in_progress && (ms_since_last_packet > INACTIVITY_TIMEOUT_MS)) {
+                while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial: wait for DMA Stream to turn off
+                while ((USART3->SR & USART_SR_TC) == 0);       // Wait for USART Transmission Complete (TC) flag
+
+                __disable_irq();
+                NVIC_SystemReset(); // Purge state and reboot cleanly
+            }
+
+            GPIOD->ODR ^= GPIO_ODR_OD4;
+            NBdelay_ms(150); // blink wait to receive the uart bytes
+        }
+        return 0;
+    }
 }
 
 // ============================================================================
@@ -744,59 +777,75 @@ int main() {
 // Overrides the weak symbol automatically
 extern "C" void UART_RxCpltCallback_DMA(const UartDriver& instance, std::span<const uint8_t> incoming_data) {
     if (&instance == &uart6) {
-        ParseIncomingStream(incoming_data);
+        ParseIncomingStream(incoming_data); // Will process data from the ESP32
     }
 }
 
-
+// button PA0 pushed triggers an interrupt
 extern "C" void EXTI0_IRQHandler(void) {
     // Check if the interrupt came from line 0
-	if (EXTI->PR & (1<<0)) {  // button pushed : if the PA0 triggered the interrupt
+    if (EXTI->PR & (1 << 0)) {
+        EXTI->PR = (1 << 0);  // Clear the interrupt flag by writing a 1
 
-        // Safety check: Only escape if we are actively waiting for an update file
-        // (This prevents accidental button presses from wiping states at wrong times)
-        uint8_t current_boot_state = get_active_bank_choice();
+        uint32_t current_tick = GetSysTick(); // for the debouncing
 
-        if (current_boot_state == STATE_FORCE_UPDATE) {
+        // Only register the press if 300ms have passed since the last valid press (Debounce Guard)
+        if ((current_tick - last_debounce_tick) > 300) {
 
-            // 1. Find the last running valid bank choice
-            uint8_t fallback_bank = STATE_RUN_BANK1; // Default
-            uint32_t address = SECTOR13_START;
-            // Find the first unwritten byte (0xFF)
-            while (address < SECTOR13_MAGIC_ADDR) {
-                if (*reinterpret_cast<volatile uint8_t*>(address) == 0xFF) {
-                    break;
+            // Safety check: Only escape if we are actively waiting for an update file
+            // (This prevents accidental button presses from wiping states at wrong times)
+            uint8_t current_boot_state = get_active_bank_choice();
+
+            if (current_boot_state == STATE_FORCE_UPDATE) {
+
+                // STEP 1: Find the upper bound of written data in Sector 13
+                uint8_t fallback_bank = STATE_RUN_BANK1; // Default fallback
+                uint32_t address = SECTOR13_START;
+
+                // Find the first unwritten byte (0xFF)
+                while (address < SECTOR13_MAGIC_ADDR) {
+                    if (*reinterpret_cast<volatile uint8_t*>(address) == 0xFF) {
+                        break;
+                    }
+                    address++;
                 }
-                address++;
-            }
-            // 2. Start scanning backwards from the last written byte
-            if (address > SECTOR13_START) {
-            	address--; // Step back from 0xFF onto the last written byte (which is likely 0x0A)
-            	// Scan backwards byte-by-byte down to the very first byte of the sector
-            	while (address >= SECTOR13_START) {
-            		uint8_t checked_byte = *reinterpret_cast<volatile uint8_t*>(address);
 
-            		if (checked_byte == STATE_RUN_BANK1 || checked_byte == STATE_RUN_BANK2) {
-            			fallback_bank = checked_byte;
-            			break; // Found the last valid active bank! Stop scanning.
-            		}
-            		// If it's a 0x0A, just keep walking backwards
-            		if (address == SECTOR13_START) {
-            			break; // Prevent underflowing below our sector start
-            		}
-            		address--;
-            	}
+                // STEP 2: Start scanning backwards from the last written byte
+                if (address > SECTOR13_START) {
+                    address--; // Step back from 0xFF onto the last written byte (which is likely 0x0A)
+
+                    // Scan backwards byte-by-byte down to the very first byte of the sector
+                    while (address >= SECTOR13_START) {
+                        uint8_t checked_byte = *reinterpret_cast<volatile uint8_t*>(address);
+
+                        if (checked_byte == STATE_RUN_BANK1 || checked_byte == STATE_RUN_BANK2) {
+                            fallback_bank = checked_byte;
+                            break; // Found the last valid active bank! Stop scanning.
+                        }
+
+                        // If it's a 0x0A, just keep walking backwards
+                        if (address == SECTOR13_START) {
+                            break; // Prevent underflowing below our sector start
+                        }
+                        address--;
+                    }
+                }
+
+                // STEP 3: Commit structural state recovery & trigger hardware reset
+                record_new_bank_state(fallback_bank); // Write Sector 13 to store the fallback bank byte
+
+                // Clean down and reboot
+                __disable_irq();         // Prevent other interrupts from breaking the restart
+                EXTI->PR = EXTI_PR_PR0;  // Clear pending flag just in case
+
+                // while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial ?? if DMA is used, wait for Stream to turn off
+                while ((USART3->SR & USART_SR_TC) == 0);          // Wait for USART Transmission Complete (TC) flag
+
+                NVIC_SystemReset();      // Reboot directly out of the loop!
             }
-            record_new_bank_state(fallback_bank); // Write Sector 13 to store the fallback bank byte after the 0x0A
-            // 3. Clean down and reboot
-            __disable_irq(); // Prevent other interrupts from breaking the restart
-            EXTI->PR = EXTI_PR_PR0; // Clear pending flag just in case
-            // while ((DMA1_Stream3->CR & DMA_SxCR_EN) != 0); // Crucial: if DMA is used, wait for Stream to turn off
-            while ((USART3->SR & USART_SR_TC) == 0);  // Wait for USART Transmission Complete (TC) flag
-            NVIC_SystemReset(); // Reboot directly out of the loop!
+            last_debounce_tick = current_tick; // Update the tracking timestamp
         }
-        EXTI->PR = (1<<0);  // Clear the interrupt flag by writing a 1
-	}
+    }
 }
 
 

@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/cmake_install.cmake",
+		"C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/common/cmake_install.cmake",
+		"C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/bootloader/cmake_install.cmake",
+		"C:/Users/Intel NUC/STM32CubeIDE/workspace_1.19.0/STM32-ESP32_Uart_OTA/STM32/application/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

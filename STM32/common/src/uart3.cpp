@@ -50,17 +50,27 @@ static void USART3_LowLevelInit(void) {
 
 // Handles the strict, unchangeable hardware connections for UART6, acts as a pin guard so that other instances cannot steal these pins
 static void USART6_LowLevelInit(void) {
-    // Enable USART6 and GPIOC Clocks
+    // Enable peripheral clocks
     RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
-    // Configure Pin PB10 (TX) and PB11 (RX) for Alternate Function 8
-    GPIOC->MODER &= ~((3<<12) | (3<<14));
-    GPIOC->MODER |= (2<<12) | (2<<14); // Alternate function mode
-    GPIOC->OSPEEDR |= (1<<12) | (1<<14); // medium speed
-    GPIOC->AFR[0] &= ~((15U<<24) | (15U<<28));
-    GPIOC->AFR[0] |= (8U<<24) | (8U<<28); // AF function Usart6
-    // Enable DMA2 Clock
     RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+
+    // 1. CLAMP BOTH LINES HIGH: Set Pull-up (0b01) on PC6 (TX) and PC7 (RX)
+    // This stops PC6 from sagging low (Tx frame error) at init !
+    GPIOC->PUPDR &= ~((3U << 12) | (3U << 14));
+    GPIOC->PUPDR |=  ((1U << 12) | (1U << 14));
+
+    // 2. MAP MUX FIRST: Route Pin 6 and Pin 7 to AF8 (USART6)
+    GPIOC->AFR[0] &= ~((15U << 24) | (15U << 28));
+    GPIOC->AFR[0] |=  ((8U  << 24) | (8U  << 28));
+
+    // 3. ENGAGE PINS: Now switch to Alternate Function Mode safely
+    GPIOC->MODER &= ~((3U << 12) | (3U << 14));
+    GPIOC->MODER |=  ((2U << 12) | (2U << 14));
+
+    // 4. SPEED: Configure High/Medium Speed
+    GPIOC->OSPEEDR &= ~((3U << 12) | (3U << 14));
+    GPIOC->OSPEEDR |=  ((1U << 12) | (1U << 14));
 }
 
 
@@ -98,25 +108,28 @@ BareM_StatusTypeDef UartDriver::init(uint32_t baudrate) {
         config.lowLevelInit();
     }
 
-    // 2. Configure USART Word Length (8-bits) & Enable Peripheral
-    config.usart->CR1 |= USART_CR1_UE;
-    config.usart->CR1 &= ~USART_CR1_M;
+    // 2. CRUCIAL: Clear configuration flags first, but keep UE (Peripheral Enable) DISABLED for now
+    config.usart->CR1 &= ~(USART_CR1_UE | USART_CR1_M | USART_CR1_RE | USART_CR1_TE);
 
-    // 3. Calculate and Set Baud Rate cleanly using integer math (No math.h / float needed)
+    // 3. Calculate and Set Baud Rate safely while the peripheral hardware engine is quiet
     uint32_t pclk = (config.usart == USART1 || config.usart == USART6) ? 90000000 : 45000000;
     uint32_t usartdiv = (pclk + (baudrate / 2)) / baudrate;
     config.usart->BRR = usartdiv;
 
-    // 7. Configure NVIC Interrupt Vectors using constants from Config
+    // 4. Configure NVIC Interrupt Vectors
     NVIC_SetPriority(config.usartIrq, 4);
     NVIC_EnableIRQ(config.usartIrq);
 
-    // 8. Finalize Hardware Enables & Set Default Driver Flags
-    config.usart->CR1 |= USART_CR1_RE | USART_CR1_TE;
-
-    // Explicitly initialize state links to prevent random memory states on bootup
+    // 5. Explicitly initialize state links
     this->tx_link = LinkState::Idle;
     this->rx_link = LinkState::Idle;
+
+    // 6. CLEAR GLITCHES: Force-clear any dirty status flags locked up during the step 1 pin-switch
+    [[maybe_unused]] volatile uint32_t tmpreg = config.usart->SR;
+    [[maybe_unused]] volatile uint32_t tmpdr  = config.usart->DR;
+
+    // 7. FINALIZE: Enable the engine and the receiver/transmitter simultaneously
+    config.usart->CR1 |= (USART_CR1_UE | USART_CR1_RE | USART_CR1_TE);
 
     return Bare_OK;
 }

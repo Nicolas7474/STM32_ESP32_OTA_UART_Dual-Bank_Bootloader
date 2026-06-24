@@ -32,7 +32,7 @@
 
 // Hardware Mapping: UART Bus 1 dedicated to communicating with the STM32
 #define STM32_UART_PORT               UART_NUM_1
-#define STM32_UART_BAUD               115200
+#define STM32_UART_BAUD               1500000 // 1.5 Mbps
 
 // Hardware GPIO Pins for UART1
 #define STM32_TX_PIN                  (17) 
@@ -54,6 +54,7 @@
 #define NAK_MAGIC_MISSING     0x18
 #define ERR_FLASH_ERASE       0xE1
 #define ERR_FLASH_WRITE       0xE2
+#define WAIT_BYTE             0x19 // used during erase time of STM32 Flash
 
 #define PAYLOAD_MAX_SIZE  512
 
@@ -184,18 +185,29 @@ static bool send_packet_to_stm32(const uint8_t *payload, uint16_t len) {
 
         ESP_LOGI(APP_TAG, "Sending Packet %d (Size: %d) ...", fw_ctx.packet_id, len);        
         // Clean UART queue before transmit to erase residual noise bytes
-        uart_flush_input(STM32_UART_PORT);        
-        // FIXED: Send the start_byte sequentially first, followed by the clean 12-byte header
+        uart_flush_input(STM32_UART_PORT);  
+
+        // SEND the start_byte sequentially first, followed by the clean 12-byte header
         uart_write_bytes(STM32_UART_PORT, (const char*)&start_byte, 1);
         uart_write_bytes(STM32_UART_PORT, (const char*)&header, sizeof(FirmwareHeader_t));
         uart_write_bytes(STM32_UART_PORT, (const char*)payload, len);
         uart_write_bytes(STM32_UART_PORT, (const char*)&payload_crc_be, sizeof(payload_crc_be));
         
-        // Wait up to 3000ms for STM32 response byte
+        // Then wait up to 100ms for STM32 response byte (excepted WAIT_BYTE)
         uint8_t response = 0;
-        int rx_len = uart_read_bytes(STM32_UART_PORT, &response, 1, pdMS_TO_TICKS(3000));
+        int rx_len = uart_read_bytes(STM32_UART_PORT, &response, 1, pdMS_TO_TICKS(100));
         
         if (rx_len > 0) {
+            if (response == WAIT_BYTE) {
+                ESP_LOGI(APP_TAG, "STM32 is busy erasing flash (>350ms). Extending timeout window...");                
+                // Block and wait with a generous window specifically for the hardware operation
+                rx_len = uart_read_bytes(STM32_UART_PORT, &response, 1, pdMS_TO_TICKS(2500));
+                if (rx_len <= 0) {
+                    ESP_LOGE(APP_TAG, "Timeout waiting for STM32 to finish flash operation.");
+                    retry_count++;
+                    continue;
+                }
+            }
               switch(response) {
                 case ACK_BYTE:
                     ESP_LOGI(APP_TAG, "ACK received from STM32.");
