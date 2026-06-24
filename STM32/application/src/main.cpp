@@ -17,7 +17,7 @@
 #include <stdio.h> // snprintf
 
 #define CMD_CHECK_UPDATE_REQ          0x25  // STM32 -> ESP32: "Check for updates!"
-#define CMD_UPDATE_INFO_REPLY         0x20 // ESP32: "This is the FW version I fetched from server"
+#define CMD_UPDATE_INFO_REPLY         0x20  // ESP32: "This is the FW version I fetched from server"
 #define CMD_REQ_UPDATE_SERVER  		  0x28  // STM32 -> ESP32: "You can update the new FW"
 
 volatile uint32_t last_debounce_tick = 0;
@@ -27,8 +27,8 @@ std::array<uint8_t, 1024> buffer_Rx{}; // Sized to 1024 to easily hold a full 51
 __attribute__((section(".fw_metadata"), used))
 const FirmwareMetadata current_fw_info = {
     .magic_anchor  = 0x56455253,  // "VERS" ASCII literal
-    .version_major = 1,			  // Your current running version
-    .version_minor = 2,           // Change version (higher), build and upload the resulting application.bin file to the server
+    .version_major = 1,			  // Current running version v1.2 - low value for test purpose.
+    .version_minor = 2,           // Change version (higher), build (don't flash) and upload the resulting application.bin file to the server
     .total_size    = 3428,        // Match your server JSON payload if known
     .total_crc     = 1140727448
 };
@@ -119,6 +119,7 @@ int main() {
 
 	BareM_StatusTypeDef res3 = uart3.init(115200);
 	while(res3 != Bare_OK);
+	NBdelay_ms(3000);
 	BareM_StatusTypeDef res6 = uart6.init(1500000); // 1.5 Mbps
 	while(res6 != Bare_OK);
 
