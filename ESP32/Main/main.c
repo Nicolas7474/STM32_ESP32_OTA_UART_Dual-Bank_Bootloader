@@ -1,3 +1,12 @@
+/**
+ * @file esp32_stm32_ota_bridge.c
+ * @brief Secure HTTPS-to-UART OTA Firmware Bridge for STM32 Bootloader
+ * * Manages ESP32 Wi-Fi connectivity, performs secure HTTPS GET requests to fetch 
+ * JSON metadata and binary firmware files, and acts as a protocol bridge—framing, 
+ * packetizing, and streaming data over a high-speed UART connection to an external 
+ * STM32 target.
+ */
+
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
