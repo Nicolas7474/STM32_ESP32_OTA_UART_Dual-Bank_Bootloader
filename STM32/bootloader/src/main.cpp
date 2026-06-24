@@ -77,8 +77,7 @@ inline constexpr uint32_t BANK2_APP_START_ADDR = 0x08108000U; // Pushed from 12 
 inline constexpr uint32_t SECTOR12_START = 0x08100000U; // Eeprom-like sector to store any user data
 inline constexpr uint32_t SECTOR12_END   = 0x08104000U; // Boundary limit
 inline constexpr uint32_t SECTOR13_START = 0x08104000U; // Non-volatile sector that store linearly the Bank number the application currently runs on
-inline constexpr uint32_t SECTOR13_END   = 0x08108000U;
-inline constexpr uint32_t SECTOR13_MAGIC_ADDR = 0x08107FFCU; // Last 32-bit word of Sector 13
+inline constexpr uint32_t SECTOR13_MAGIC_ADDR = 0x08107FFCU; // Last 32-bit word of Sector 13 (SECTOR13_END = 0x08108000U)
 inline constexpr uint32_t SECTOR13_MAGIC_VAL  = 0x1A2B3C4DU; // Your chosen initialization token
 
 // Explicit physical layout of STM32F469 Bank 1
@@ -238,7 +237,7 @@ static bool flash_write(uint32_t address, ValidFlashType auto data) {
 static uint8_t get_active_bank_choice() {
     uint32_t address = SECTOR13_START;
 
-    while (address < SECTOR13_END) {
+    while (address < SECTOR13_MAGIC_ADDR) {
         uint8_t current_byte = *reinterpret_cast<volatile uint8_t*>(address);
 
         if (current_byte == 0xFF) {
@@ -251,8 +250,7 @@ static uint8_t get_active_bank_choice() {
         }
         address++;
     }
-
-    return *reinterpret_cast<volatile uint8_t*>(SECTOR13_END - 1);
+    return *reinterpret_cast<volatile uint8_t*>(SECTOR13_MAGIC_ADDR - 1);
 }
 
 
@@ -345,7 +343,7 @@ void execute_flash_and_respond() {
     	// If stuck in a forced update state, step backward through Sector 13 to resolve the last valid active bank
     	if (active_bank == STATE_FORCE_UPDATE) {
     		uint32_t address = SECTOR13_START;
-    		while (address < SECTOR13_END) {
+    		while (address < SECTOR13_MAGIC_ADDR) {
     			if (*reinterpret_cast<volatile uint8_t*>(address) == 0xFF) {
     				break;
     			}
