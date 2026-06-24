@@ -71,7 +71,7 @@ using AppEntryFunction = void(*)(); // in C: typedef void (*AppEntryFunction)(vo
 // ============================================================================
 // DUAL-BANK FLASH BOUNDARIES & HELPERS
 // ============================================================================
-inline constexpr uint32_t BANK1_APP_START_ADDR = 0x08008000U; // Since we don't write the FW on the first two sectors
+inline constexpr uint32_t BANK1_APP_START_ADDR = 0x08008000U; // First 2 sectors are reserved for bootloader (Linker: FLASH (rx) : ORIGIN = 0x08008000, LENGTH = 992K)
 inline constexpr uint32_t BANK2_APP_START_ADDR = 0x08108000U; // Pushed from 12 originally to 14th sector to get symmetry with Bank 1
 // Total Isolation: because the linker doesn't know these addresses exist, it will never try to compile code into them.
 inline constexpr uint32_t SECTOR12_START = 0x08100000U; // Eeprom-like sector to store any user data
@@ -867,7 +867,7 @@ Because Sector 13 is non-volatile physical flash, its contents survive power cut
 When you turn on the power, the STM32F469 wakes up, UFB_MODE is 0, and the CPU starts executing your bootloader from the beginning of physical Bank 1.
 Here is how main() uses Sector 13 to handle a cold power-on start:
 
-    The Power Turns On: The MCU boots natively into Bank 1. main() starts executing.
+    The Power Turns On: The MCU always boots natively into Bank 1. on the bootloader. main() starts executing.
     The Non-Volatile Check: main() immediately calls get_active_bank_choice(), which reads physical Sector 13.
     The Discovery: Even though the chip just lost power, Sector 13 stubbornly remembers its last state. Let's say it reads 0x02 (meaning Bank 2 contains the active, updated firmware).
     The Volatile Restoration: Inside main(), because active_bank == 2, the bootloader immediately calls jump_to_application().
