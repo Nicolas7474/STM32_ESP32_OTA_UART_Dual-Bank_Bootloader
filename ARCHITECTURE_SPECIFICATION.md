@@ -112,7 +112,7 @@ This architecture ensures that if a catastrophic application error occurs, a har
 The full lifecycle of an update follows a strict, highly coordinated dance between the two microcontrollers:
 
 
-ESP32 (Gateway)                                                    STM32F469 (Host)
+ESP32 (Gateway)   <span style="width:200px;"></span>            STM32F469 (Host)<br/>
 ================                                                   ==================
 
 (Connects Wi-Fi)                                                  (Bootloader jumps to Application)
