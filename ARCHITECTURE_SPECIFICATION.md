@@ -152,7 +152,7 @@ ESP32 (Gateway)                                                    STM32F469 (Ho
   | End Loop
   v    |
 
-https transaction ends, all full-packets (512B) are stored,
+https transaction ends, all full-packets (512B) are stored,<br>
 checks for remaining bytes and append to buffer
 
        | ---- [8. Transmits Remaining Tail Bytes] ----------------> | [Total Bytes Received Match]
