@@ -1,7 +1,7 @@
 /* Bootloader with firmware update capability on dual-bank flash memory swap
  * APPLICATION FILE
  * @file main.cpp
- * @brief STM32F469 Custom Bare-Metal C++ Bootloader
+ * @brief STM32F469 Custom Bare-Metal C++ Bootloader (incl. IWDG)
  */
 
 #include "memory_map.hpp"
@@ -10,6 +10,7 @@
 #include <string_view>
 #include <span>
 #include "stm32f469xx.h"
+#include "stm32f4xx.h"
 #include "myConfig.h"
 #include "timers.h"
 #include <string.h>
@@ -33,6 +34,12 @@ const FirmwareMetadata current_fw_info = {
     .total_crc     = 1140727448
 };
 
+
+//===========================================================================
+// 			FUNCTIONS
+// ============================================================================
+
+
 void initialize_hardware() {
     // 1. Relocate the Vector Table to point to the application's starting Flash boundary.
     // This is the absolute first thing a shifted bare-metal firmware must execute.
@@ -45,6 +52,20 @@ void initialize_hardware() {
     GPIO_Config();
     InterruptGPIO_Config();
 }
+
+static void IWDG_Init(void) {
+
+    DBGMCU->APB1FZ |= DBGMCU_APB1_FZ_DBG_IWDG_STOP; // Freeze IWDG when core is halted by debugger
+    RCC->CSR |= RCC_CSR_LSION;  // Enable LSI Clock
+    while ((RCC->CSR & RCC_CSR_LSIRDY) == 0);  // Wait until LSI is stable
+    IWDG->KR = 0xCCCC; // Start the Watchdog FIRST
+    IWDG->KR = 0x5555;  // Enable write access to IWDG_PR and IWDG_RLR registers
+    IWDG->PR = (IWDG_PR_PR_2 | IWDG_PR_PR_0); // Configure Prescaler (Divide by 64 -> 500 Hz clock)
+    IWDG->RLR = 1000; // Configure Reload Value (1000 ticks = ~2 seconds)
+    while (IWDG->SR != 0); // Wait for register update flags to clear
+    IWDG->KR = 0xAAAA; // Refresh the counter
+}
+
 
 static void flash_unlock() {
     // Check if the flash is already unlocked
@@ -119,7 +140,6 @@ int main() {
 
 	BareM_StatusTypeDef res3 = uart3.init(115200);
 	while(res3 != Bare_OK);
-	NBdelay_ms(3000);
 	BareM_StatusTypeDef res6 = uart6.init(1500000); // 1.5 Mbps
 	while(res6 != Bare_OK);
 
@@ -132,10 +152,14 @@ int main() {
 	char buf[16];
 	snprintf(buf, sizeof(buf), " Version: %d.%d ", (int)current_fw_info.version_major, (int)current_fw_info.version_minor);
 	uart3.UART_Transmit({reinterpret_cast<const uint8_t*>(buf), strlen(buf)}, 500);
+	IWDG_Init(); // Fire the IWDG
 
-    while (true) {
-    	NBdelay_ms(3000);
-    	uart3.UART_Transmit(tx_buffer, 200);
+	while (true) {
+
+		IWDG->KR = 0xAAAA; //  Refresh the counter
+		NBdelay_ms(1000);
+	    uart3.UART_Transmit(tx_buffer, 200);
+
     }
     return 0;
 }
@@ -181,11 +205,11 @@ extern "C" void UART_RxCpltCallback_DMA(const UartDriver& instance, std::span<co
                 			(major == static_cast<uint8_t>(current_fw_info.version_major) && minor > static_cast<uint8_t>(current_fw_info.version_minor))) {
                 		write_0xA();
                 		// Pass the array directly
-                		constexpr std::string_view msg = "New FW update has been found, will be installed at next start-up";
+                		constexpr std::string_view msg = "New FW update has been found, will be installed at next start-up. ";
                 		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg.data()), msg.size()}, 500);
                 	}
                 	else {
-                		constexpr std::string_view msg2 = "Firmware file has been found, but version is older. Won't be installed.";
+                		constexpr std::string_view msg2 = "Firmware file has been found, but version is older. Won't be installed. ";
                 		uart3.UART_Transmit(std::span<const uint8_t>{reinterpret_cast<const uint8_t*>(msg2.data()), msg2.size()}, 500);
                 	}
                 	state = ParserState::WAIT_CMD; // Reset to hunt for the next command sequence
